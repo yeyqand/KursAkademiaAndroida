@@ -4,5 +4,6 @@ import org.koin.core.module.Module
 
 val koinInjector: List<Module> = listOf(
     appModule,
-    networkModule
+    networkModule,
+    roomModule
 )
