@@ -2,8 +2,8 @@ package com.yeyq.kursakademiaandroida.features.data.remote.model
 
 import com.google.gson.annotations.SerializedName
 import com.yeyq.kursakademiaandroida.features.episodes.domain.model.Character
-import com.yeyq.kursakademiaandroida.features.episodes.domain.model.Location
-import com.yeyq.kursakademiaandroida.features.episodes.domain.model.Origin
+import com.yeyq.kursakademiaandroida.features.episodes.domain.model.LocationCharacter
+import com.yeyq.kursakademiaandroida.features.episodes.domain.model.OriginCharacter
 
 
 data class CharacterRemote(
@@ -38,7 +38,7 @@ data class OriginDTO(
     @SerializedName("name") val name: String,
     @SerializedName("url") val url: String
 ) {
-    fun toOrigin() = Origin(
+    fun toOrigin() = OriginCharacter(
         name = name,
         url = url
     )
@@ -48,7 +48,7 @@ data class LocationDTO(
     @SerializedName("name") val name: String,
     @SerializedName("url") val url: String
 ) {
-    fun toLocation() = Location(
+    fun toLocation() = LocationCharacter(
         name = name,
         url = url
     )
