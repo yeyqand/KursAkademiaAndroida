@@ -2,7 +2,7 @@ package com.yeyq.kursakademiaandroida.core.di
 
 import com.yeyq.kursakademiaandroida.BASE_URL
 import com.yeyq.kursakademiaandroida.BuildConfig
-import com.yeyq.kursakademiaandroida.features.data.RickAndMortyApi
+import com.yeyq.kursakademiaandroida.features.data.remote.RickAndMortyApi
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
