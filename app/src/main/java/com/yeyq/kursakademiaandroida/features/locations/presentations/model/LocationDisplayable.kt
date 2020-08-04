@@ -1,6 +1,6 @@
-package com.yeyq.kursakademiaandroida.features.episodes.presentation.model
+package com.yeyq.kursakademiaandroida.features.locations.preentations.model
 
-import com.yeyq.kursakademiaandroida.features.episodes.domain.model.Location
+import com.yeyq.kursakademiaandroida.features.locations.domain.model.Location
 
 
 data class LocationDisplayable(

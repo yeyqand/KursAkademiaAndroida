@@ -1,4 +1,4 @@
-package com.yeyq.kursakademiaandroida.features.episodes.domain.model
+package com.yeyq.kursakademiaandroida.features.locations.domain.model
 
 class Location(
     val id: Int,
