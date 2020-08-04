@@ -63,4 +63,18 @@ ext {
             roomCompiler: "androidx.room:room-compiler:$roomVersion"
     ]
 
+    def junitVersion = "5.6.2"
+    def mockkVersion = "1.10.0"
+    def kluentVersion = "1.61"
+    testDependencies = [
+            jupiter      : "org.junit.jupiter:junit-jupiter",
+            jupiterApi   : "org.junit.jupiter:junit-jupiter-api:$junitVersion",
+            jupiterParams: "org.junit.jupiter:junit-jupiter-params:$junitVersion",
+            mockk        : "io.mockk:mockk:$mockkVersion",
+            kluent       : "org.amshove.kluent:kluent:$kluentVersion"
+    ]
+    testRuntimeOnlyDependencies = [
+            jupiterEngine: "org.junit.jupiter:junit-jupiter-engine:$junitVersion"
+    ]
+
 }
