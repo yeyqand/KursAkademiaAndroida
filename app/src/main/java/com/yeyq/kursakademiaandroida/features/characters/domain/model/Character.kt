@@ -1,4 +1,4 @@
-package com.yeyq.kursakademiaandroida.features.episodes.domain.model
+package com.yeyq.kursakademiaandroida.features.characters.domain.model
 
 
 data class Character(

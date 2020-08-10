@@ -1,8 +1,8 @@
-package com.yeyq.kursakademiaandroida.features.episodes.presentation.model
+package com.yeyq.kursakademiaandroida.features.characters.presentation.model
 
-import com.yeyq.kursakademiaandroida.features.episodes.domain.model.Character
-import com.yeyq.kursakademiaandroida.features.episodes.domain.model.LocationCharacter
-import com.yeyq.kursakademiaandroida.features.episodes.domain.model.OriginCharacter
+import com.yeyq.kursakademiaandroida.features.characters.domain.model.Character
+import com.yeyq.kursakademiaandroida.features.characters.domain.model.LocationCharacter
+import com.yeyq.kursakademiaandroida.features.characters.domain.model.OriginCharacter
 
 data class CharacterDisplayable(
     val id: Int,
@@ -24,8 +24,12 @@ data class CharacterDisplayable(
         species = character.species,
         type = character.type,
         gender = character.gender,
-        origin = OriginCharacterDisplayable(character.origin),
-        location = LocationCharacterDisplayable(character.location),
+        origin = OriginCharacterDisplayable(
+            character.origin
+        ),
+        location = LocationCharacterDisplayable(
+            character.location
+        ),
         image = character.image,
         episodes = character.episodes,
         url = character.url
