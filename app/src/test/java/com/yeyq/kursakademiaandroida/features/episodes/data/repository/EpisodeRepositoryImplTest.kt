@@ -38,7 +38,7 @@ internal class EpisodeRepositoryImplTest {
     }
 
     @Test
-    fun `GIVEN network is connected AND succesful data fetch WHEN episodes request THEN save episodes to local database`() {
+    fun `GIVEN network is connected AND successful data fetch WHEN episodes request THEN save episodes to local database`() {
         //given
         val api = mockk<RickAndMortyApi> {
             coEvery { getEpisodes() } returns EpisodeResponse.mock()
