@@ -1,4 +1,4 @@
-package com.yeyq.kursakademiaandroida.features.data.remote.model
+package com.yeyq.kursakademiaandroida.core.api.model
 
 import com.google.gson.annotations.SerializedName
 import com.yeyq.kursakademiaandroida.features.locations.domain.model.Location

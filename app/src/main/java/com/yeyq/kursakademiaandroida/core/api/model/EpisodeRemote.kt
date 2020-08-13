@@ -1,4 +1,4 @@
-package com.yeyq.kursakademiaandroida.features.data.remote.model
+package com.yeyq.kursakademiaandroida.core.api.model
 
 import com.google.gson.annotations.SerializedName
 import com.yeyq.kursakademiaandroida.features.episodes.domain.model.Episode
@@ -12,6 +12,7 @@ data class EpisodeRemote(
     @SerializedName("characters") val characters: List<String>,
     @SerializedName("url") val url: String
 ) {
+    companion object
 
     fun toEpisode() = Episode(
         id = id,
