@@ -1,4 +1,4 @@
-package com.yeyq.kursakademiaandroida.features.characters
+package com.yeyq.kursakademiaandroida.features.characters.domain
 
 import com.yeyq.kursakademiaandroida.features.characters.domain.model.Character
 

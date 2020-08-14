@@ -12,5 +12,5 @@ interface LocationDao {
     suspend fun getLocations(): List<LocationCached>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun saveLocations(vararg episode: LocationCached)
+    suspend fun saveLocations(vararg location: LocationCached)
 }
