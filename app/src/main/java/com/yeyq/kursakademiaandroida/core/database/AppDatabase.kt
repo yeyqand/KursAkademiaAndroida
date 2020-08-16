@@ -14,7 +14,7 @@ import com.yeyq.kursakademiaandroida.features.locations.data.local.model.Locatio
     entities = [EpisodeCached::class, LocationCached::class, CharacterCached::class],
     version = 1
 )
-@TypeConverters(ListConverter::class, CharacterConverter::class)
+@TypeConverters(ListConverter::class)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun episodeDao(): EpisodeDao
