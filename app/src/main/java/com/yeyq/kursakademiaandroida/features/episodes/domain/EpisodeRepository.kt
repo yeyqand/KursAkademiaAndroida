@@ -1,4 +1,4 @@
-package com.yeyq.kursakademiaandroida.features.episodes
+package com.yeyq.kursakademiaandroida.features.episodes.domain
 
 import com.yeyq.kursakademiaandroida.features.episodes.domain.model.Episode
 

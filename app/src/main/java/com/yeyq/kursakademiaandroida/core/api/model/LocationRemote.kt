@@ -1,4 +1,4 @@
-package com.yeyq.kursakademiaandroida.features.data.remote.model
+package com.yeyq.kursakademiaandroida.core.api.model
 
 import com.google.gson.annotations.SerializedName
 import com.yeyq.kursakademiaandroida.features.locations.domain.model.Location
@@ -12,6 +12,8 @@ data class LocationRemote(
     @SerializedName("residents") val residents: List<String>,
     @SerializedName("url") val url: String
 ) {
+    companion object
+
     fun toLocation() =
         Location(
             id = id,

@@ -1,6 +1,5 @@
 package com.yeyq.kursakademiaandroida.features.locations.domain
 
-import com.yeyq.kursakademiaandroida.features.locations.LocationRepository
 import io.mockk.coVerify
 import io.mockk.mockk
 import kotlinx.coroutines.GlobalScope

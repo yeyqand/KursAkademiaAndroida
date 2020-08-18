@@ -1,8 +1,8 @@
-package com.yeyq.kursakademiaandroida.core.di;
+package com.yeyq.kursakademiaandroida.core.di
 
 import androidx.room.Room
 import com.yeyq.kursakademiaandroida.DATABASE_NAME
-import com.yeyq.kursakademiaandroida.features.data.AppDatabase
+import com.yeyq.kursakademiaandroida.core.database.AppDatabase
 import org.koin.android.ext.koin.androidApplication
 import org.koin.dsl.module
 
@@ -11,4 +11,10 @@ val roomModule = module {
         Room.databaseBuilder(androidApplication(), AppDatabase::class.java, DATABASE_NAME)
             .build()
     }
+
+    single { get<AppDatabase>().episodeDao() }
+
+    single { get<AppDatabase>().locationDao() }
+
+    single { get<AppDatabase>().characterDao() }
 }
