@@ -5,7 +5,6 @@ import com.yeyq.kursakademiaandroida.core.api.model.CharacterResponse
 import com.yeyq.kursakademiaandroida.core.network.NetworkStateProvider
 import com.yeyq.kursakademiaandroida.features.characters.data.local.model.CharacterCached
 import com.yeyq.kursakademiaandroida.features.characters.data.local.model.CharacterDao
-import com.yeyq.kursakademiaandroida.features.characters.data.local.repository.CharacterRepositoryImpl
 import com.yeyq.kursakademiaandroida.features.characters.domain.CharacterRepository
 import com.yeyq.kursakademiaandroida.mock.mock
 import io.mockk.coEvery

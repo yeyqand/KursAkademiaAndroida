@@ -13,14 +13,20 @@ data class Character(
     val image: String,
     val episodes: List<String>,
     val url: String
-)
+) {
+    companion object
+}
 
 data class OriginCharacter(
     val name: String,
     val url: String
-)
+) {
+    companion object
+}
 
 data class LocationCharacter(
     val name: String,
     val url: String
-)
+) {
+    companion object
+}

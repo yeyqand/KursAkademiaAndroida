@@ -2,7 +2,9 @@ package com.yeyq.kursakademiaandroida.mock
 
 import com.yeyq.kursakademiaandroida.core.api.model.*
 import com.yeyq.kursakademiaandroida.features.characters.data.local.model.CharacterCached
+import com.yeyq.kursakademiaandroida.features.characters.domain.model.Character
 import com.yeyq.kursakademiaandroida.features.characters.domain.model.LocationCharacter
+import com.yeyq.kursakademiaandroida.features.characters.domain.model.LocationCharacter.Companion
 import com.yeyq.kursakademiaandroida.features.characters.domain.model.OriginCharacter
 import com.yeyq.kursakademiaandroida.features.episodes.data.local.model.EpisodeCached
 import com.yeyq.kursakademiaandroida.features.episodes.domain.model.Episode
@@ -137,4 +139,31 @@ fun Episode.Companion.mock() = Episode(
     code = "episode code",
     characters = emptyList(),
     url = "episode url"
+)
+
+@TestOnly
+fun Character.Companion.mock() = Character(
+    id = 2,
+    name = "character name",
+    status = "character status",
+    species = "character species",
+    type = "character type",
+    gender = "character gender",
+    origin = OriginCharacter.mock(),
+    location = Companion.mock(),
+    image = "character image",
+    episodes = emptyList(),
+    url = "character url"
+)
+
+@TestOnly
+fun OriginCharacter.Companion.mock() = OriginCharacter(
+    name = "originCharacter name",
+    url = "originCharacter url"
+)
+
+@TestOnly
+fun Companion.mock() = LocationCharacter(
+    name = "locationCharacter name",
+    url = "locationCharacter url"
 )

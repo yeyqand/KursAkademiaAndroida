@@ -1,4 +1,4 @@
-package com.yeyq.kursakademiaandroida.features.characters.data.local.repository
+package com.yeyq.kursakademiaandroida.features.characters.data.repository
 
 import com.yeyq.kursakademiaandroida.core.api.RickAndMortyApi
 import com.yeyq.kursakademiaandroida.core.network.NetworkStateProvider

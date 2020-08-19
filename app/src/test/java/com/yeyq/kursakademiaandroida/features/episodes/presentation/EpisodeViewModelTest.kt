@@ -19,7 +19,7 @@ internal class EpisodeViewModelTest : ViewModelTest() {
 
 
     @Test
-    fun `WHEN episode live date is observed THEN set pending state`() {
+    fun `WHEN episode live data is observed THEN set pending state`() {
         //given
         val useCase = mockk<GetEpisodesUseCase>(relaxed = true)
         val viewModel = EpisodeViewModel(useCase)
@@ -32,7 +32,7 @@ internal class EpisodeViewModelTest : ViewModelTest() {
     }
 
     @Test
-    fun `WHEN episode live date is observed THEN invoke use case to get episodes`() {
+    fun `WHEN episode live data is observed THEN invoke use case to get episodes`() {
         //given
         val useCase = mockk<GetEpisodesUseCase>(relaxed = true)
         val viewModel = EpisodeViewModel(useCase)
@@ -45,7 +45,7 @@ internal class EpisodeViewModelTest : ViewModelTest() {
     }
 
     @Test
-    fun `GIVEN use case result is succes WHEN episode live date is observed THEN set idle state AND set result in live data`() {
+    fun `GIVEN use case result is success WHEN episode live data is observed THEN set idle state AND set result in live data`() {
         //given
         val episodes = listOf(Episode.mock(), Episode.mock(), Episode.mock())
         val useCase = mockk<GetEpisodesUseCase> {
@@ -71,7 +71,7 @@ internal class EpisodeViewModelTest : ViewModelTest() {
     }
 
     @Test
-    fun `GIVEN use case result is failure WHEN episode live date is observed THEN set idle state AND set error message in live data`() {
+    fun `GIVEN use case result is failure WHEN episode live data is observed THEN set idle state AND set error message in live data`() {
         //given
         val throwable = Throwable("Something went wrong")
         val useCase = mockk<GetEpisodesUseCase> {
