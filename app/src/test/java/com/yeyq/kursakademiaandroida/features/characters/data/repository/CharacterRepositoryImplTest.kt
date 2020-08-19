@@ -7,7 +7,7 @@ import com.yeyq.kursakademiaandroida.features.characters.data.local.model.Charac
 import com.yeyq.kursakademiaandroida.features.characters.data.local.model.CharacterDao
 import com.yeyq.kursakademiaandroida.features.characters.data.local.repository.CharacterRepositoryImpl
 import com.yeyq.kursakademiaandroida.features.characters.domain.CharacterRepository
-import com.yeyq.kursakademiaandroida.features.mock.mock
+import com.yeyq.kursakademiaandroida.mock.mock
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.every

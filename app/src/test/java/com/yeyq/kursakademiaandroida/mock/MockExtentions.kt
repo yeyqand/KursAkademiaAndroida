@@ -1,10 +1,11 @@
-package com.yeyq.kursakademiaandroida.features.mock
+package com.yeyq.kursakademiaandroida.mock
 
 import com.yeyq.kursakademiaandroida.core.api.model.*
 import com.yeyq.kursakademiaandroida.features.characters.data.local.model.CharacterCached
 import com.yeyq.kursakademiaandroida.features.characters.domain.model.LocationCharacter
 import com.yeyq.kursakademiaandroida.features.characters.domain.model.OriginCharacter
 import com.yeyq.kursakademiaandroida.features.episodes.data.local.model.EpisodeCached
+import com.yeyq.kursakademiaandroida.features.episodes.domain.model.Episode
 import com.yeyq.kursakademiaandroida.features.locations.data.local.model.LocationCached
 import org.jetbrains.annotations.TestOnly
 
@@ -126,5 +127,14 @@ fun CharacterCached.Companion.mock() = CharacterCached(
     image = "image species",
     episodes = emptyList(),
     url = "character url"
+)
 
+@TestOnly
+fun Episode.Companion.mock() = Episode(
+    id = 1,
+    name = "episode name",
+    airDate = "episode air date",
+    code = "episode code",
+    characters = emptyList(),
+    url = "episode url"
 )

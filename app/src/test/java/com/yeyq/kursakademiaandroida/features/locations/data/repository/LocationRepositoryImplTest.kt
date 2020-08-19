@@ -6,7 +6,7 @@ import com.yeyq.kursakademiaandroida.core.network.NetworkStateProvider
 import com.yeyq.kursakademiaandroida.features.locations.data.local.model.LocationCached
 import com.yeyq.kursakademiaandroida.features.locations.data.local.model.LocationDao
 import com.yeyq.kursakademiaandroida.features.locations.domain.LocationRepository
-import com.yeyq.kursakademiaandroida.features.mock.mock
+import com.yeyq.kursakademiaandroida.mock.mock
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.every
