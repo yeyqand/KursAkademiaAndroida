@@ -3,6 +3,7 @@ package com.yeyq.kursakademiaandroida.features.characters.di
 import com.yeyq.kursakademiaandroida.features.characters.data.repository.CharacterRepositoryImpl
 import com.yeyq.kursakademiaandroida.features.characters.domain.CharacterRepository
 import com.yeyq.kursakademiaandroida.features.characters.domain.GetCharactersUseCase
+import com.yeyq.kursakademiaandroida.features.characters.presentation.CharacterAdapter
 import com.yeyq.kursakademiaandroida.features.characters.presentation.CharacterFragment
 import com.yeyq.kursakademiaandroida.features.characters.presentation.CharacterViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -18,5 +19,6 @@ val characterModule = module {
 
     //presentation
     factory { CharacterFragment() }
+    factory { CharacterAdapter() }
 
 }
