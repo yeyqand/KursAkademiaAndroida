@@ -9,6 +9,7 @@ import com.yeyq.kursakademiaandroida.features.characters.domain.model.OriginChar
 import com.yeyq.kursakademiaandroida.features.episodes.data.local.model.EpisodeCached
 import com.yeyq.kursakademiaandroida.features.episodes.domain.model.Episode
 import com.yeyq.kursakademiaandroida.features.locations.data.local.model.LocationCached
+import com.yeyq.kursakademiaandroida.features.locations.domain.model.Location
 import org.jetbrains.annotations.TestOnly
 
 @TestOnly
@@ -166,4 +167,14 @@ fun OriginCharacter.Companion.mock() = OriginCharacter(
 fun Companion.mock() = LocationCharacter(
     name = "locationCharacter name",
     url = "locationCharacter url"
+)
+
+@TestOnly
+fun Location.Companion.mock() = Location(
+    id = 3,
+    name = "location name",
+    type = "location type",
+    dimension = "location dimension",
+    residents = emptyList(),
+    url = "location url"
 )
