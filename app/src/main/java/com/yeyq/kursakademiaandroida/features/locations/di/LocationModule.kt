@@ -3,6 +3,7 @@ package com.yeyq.kursakademiaandroida.features.locations.di
 import com.yeyq.kursakademiaandroida.features.locations.data.repository.LocationRepositoryImpl
 import com.yeyq.kursakademiaandroida.features.locations.domain.GetLocationsUseCase
 import com.yeyq.kursakademiaandroida.features.locations.domain.LocationRepository
+import com.yeyq.kursakademiaandroida.features.locations.presentation.LocationAdapter
 import com.yeyq.kursakademiaandroida.features.locations.presentation.LocationFragment
 import com.yeyq.kursakademiaandroida.features.locations.presentation.LocationViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -18,5 +19,6 @@ val locationModule = module {
 
     //presentation
     factory { LocationFragment() }
+    factory { LocationAdapter() }
 
 }
