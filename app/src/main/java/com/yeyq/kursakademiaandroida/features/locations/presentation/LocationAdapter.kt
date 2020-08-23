@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.yeyq.kursakademiaandroida.R
 import com.yeyq.kursakademiaandroida.core.base.BaseAdapter
 import com.yeyq.kursakademiaandroida.features.locations.presentation.model.LocationDisplayable
-import kotlinx.android.synthetic.main.item_episode.view.*
+import kotlinx.android.synthetic.main.item_location.view.*
 
 class LocationAdapter : BaseAdapter<LocationDisplayable>() {
 
@@ -30,7 +30,9 @@ class LocationAdapter : BaseAdapter<LocationDisplayable>() {
 
         fun bind(location: LocationDisplayable) {
             with(itemView) {
-                textView.text = location.name
+                dimensionTextView.text = location.dimension
+                nameTextView.text = location.name
+                typeTextView.text = location.type
             }
         }
     }

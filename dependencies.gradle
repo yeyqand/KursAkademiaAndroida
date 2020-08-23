@@ -10,11 +10,13 @@ ext {
     def materialVersion = "1.1.0"
     def recyclerviewVersion = "1.1.0"
     def glideVersion = "4.11.0"
+    def cardviewVersion = "1.0.0"
     uiDependencies = [
             constraintLayout: "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion",
             material        : "com.google.android.material:material:$materialVersion",
             recyclerview    : "androidx.recyclerview:recyclerview:$recyclerviewVersion",
-            glide           : "com.github.bumptech.glide:glide:$glideVersion"
+            glide           : "com.github.bumptech.glide:glide:$glideVersion",
+            implementation  : "androidx.cardview:cardview:$cardviewVersion"
     ]
 
     def navigationVersion = "2.3.0"
@@ -58,7 +60,7 @@ ext {
     def roomVersion = "2.2.5"
     databaseDependencies = [
             roomRutime: "androidx.room:room-runtime:$roomVersion",
-            roomKtx: "androidx.room:room-ktx:$roomVersion"
+            roomKtx   : "androidx.room:room-ktx:$roomVersion"
     ]
     databaseKaptDependencies = [
             roomCompiler: "androidx.room:room-compiler:$roomVersion"

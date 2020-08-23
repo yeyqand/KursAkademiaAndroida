@@ -30,7 +30,9 @@ class EpisodeAdapter : BaseAdapter<EpisodeDisplayable>() {
 
         fun bind(episode: EpisodeDisplayable) {
             with(itemView) {
-                textView.text = episode.name
+                codeTextView.text = episode.code
+                titleTextView.text = episode.name
+                airDateTextView.text = episode.airDate
             }
         }
     }

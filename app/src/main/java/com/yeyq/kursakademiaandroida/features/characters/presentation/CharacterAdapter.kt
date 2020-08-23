@@ -4,10 +4,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.yeyq.kursakademiaandroida.R
 import com.yeyq.kursakademiaandroida.core.base.BaseAdapter
 import com.yeyq.kursakademiaandroida.features.characters.presentation.model.CharacterDisplayable
-import kotlinx.android.synthetic.main.item_episode.view.*
+import kotlinx.android.synthetic.main.item_character.view.*
 
 class CharacterAdapter : BaseAdapter<CharacterDisplayable>() {
 
@@ -31,6 +32,9 @@ class CharacterAdapter : BaseAdapter<CharacterDisplayable>() {
         fun bind(character: CharacterDisplayable) {
             with(itemView) {
                 textView.text = character.name
+                Glide.with(this)
+                    .load(character.image)
+                    .into(imageView)
             }
         }
     }
