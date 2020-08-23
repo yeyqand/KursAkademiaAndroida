@@ -1,5 +1,6 @@
 package com.yeyq.kursakademiaandroida.features.characters.presentation
 
+import android.view.View
 import androidx.lifecycle.observe
 import androidx.recyclerview.widget.RecyclerView
 import com.yeyq.kursakademiaandroida.R
@@ -18,7 +19,6 @@ class CharacterFragment : BaseFragment<CharacterViewModel>(R.layout.fragment_cha
     override fun initViews() {
         super.initViews()
         initRecycler()
-        //initialize all view-related classes
     }
 
     private fun initRecycler() {
@@ -28,12 +28,20 @@ class CharacterFragment : BaseFragment<CharacterViewModel>(R.layout.fragment_cha
 
     override fun onIdleState() {
         super.onIdleState()
-        //handle idle state
+        hideProgressBar()
+    }
+
+    private fun hideProgressBar() {
+        progressBar.visibility = View.GONE
     }
 
     override fun onPendingState() {
         super.onPendingState()
-        //handle pending state
+        showProgressBar()
+    }
+
+    private fun showProgressBar() {
+        progressBar.visibility = View.VISIBLE
     }
 
     override fun initObservers() {
