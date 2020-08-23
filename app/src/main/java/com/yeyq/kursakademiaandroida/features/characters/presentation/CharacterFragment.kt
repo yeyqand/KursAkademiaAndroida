@@ -49,6 +49,6 @@ class CharacterFragment : BaseFragment<CharacterViewModel>(R.layout.fragment_cha
     }
 
     private fun showCharacters(characters: List<CharacterDisplayable>) {
-        adapter.setCharacters(characters)
+        adapter.setItems(characters)
     }
 }

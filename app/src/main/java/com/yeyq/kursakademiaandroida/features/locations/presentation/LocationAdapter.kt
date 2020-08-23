@@ -5,23 +5,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.yeyq.kursakademiaandroida.R
-import com.yeyq.kursakademiaandroida.features.locations.preentations.model.LocationDisplayable
+import com.yeyq.kursakademiaandroida.core.base.BaseAdapter
+import com.yeyq.kursakademiaandroida.features.locations.presentation.model.LocationDisplayable
 import kotlinx.android.synthetic.main.item_episode.view.*
 
-class LocationAdapter : RecyclerView.Adapter<LocationAdapter.LocationViewHolder>() {
+class LocationAdapter : BaseAdapter<LocationDisplayable>() {
 
-    private val locations by lazy { mutableListOf<LocationDisplayable>() }
-
-    fun setLocations(locations: List<LocationDisplayable>) {
-        if (locations.isNotEmpty()) {
-            this.locations.clear()
-        }
-
-        this.locations.addAll(locations)
-        notifyDataSetChanged()
-    }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LocationViewHolder {
+    override fun onCreateViewHolderBase(parent: ViewGroup, viewType: Int): LocationViewHolder {
         val itemView = LayoutInflater
             .from(parent.context)
             .inflate(R.layout.item_location, parent, false)
@@ -31,11 +21,9 @@ class LocationAdapter : RecyclerView.Adapter<LocationAdapter.LocationViewHolder>
         )
     }
 
-    override fun getItemCount(): Int = locations.size
-
-    override fun onBindViewHolder(holder: LocationViewHolder, position: Int) {
-        val location = locations[position]
-        holder.bind(location)
+    override fun onBindViewHolderBase(holder: RecyclerView.ViewHolder, position: Int) {
+        val location = items[position]
+        (holder as LocationViewHolder).bind(location)
     }
 
     class LocationViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

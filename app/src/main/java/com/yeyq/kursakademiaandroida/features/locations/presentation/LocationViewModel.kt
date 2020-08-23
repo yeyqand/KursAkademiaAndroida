@@ -7,7 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.yeyq.kursakademiaandroida.core.base.BaseViewModel
 import com.yeyq.kursakademiaandroida.features.locations.domain.GetLocationsUseCase
 import com.yeyq.kursakademiaandroida.features.locations.domain.model.Location
-import com.yeyq.kursakademiaandroida.features.locations.preentations.model.LocationDisplayable
+import com.yeyq.kursakademiaandroida.features.locations.presentation.model.LocationDisplayable
 
 
 class LocationViewModel(private val getLocationsUseCase: GetLocationsUseCase) : BaseViewModel() {

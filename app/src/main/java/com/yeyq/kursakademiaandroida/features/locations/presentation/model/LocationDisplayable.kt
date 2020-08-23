@@ -1,4 +1,4 @@
-package com.yeyq.kursakademiaandroida.features.locations.preentations.model
+package com.yeyq.kursakademiaandroida.features.locations.presentation.model
 
 import com.yeyq.kursakademiaandroida.features.locations.domain.model.Location
 

@@ -5,23 +5,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.yeyq.kursakademiaandroida.R
+import com.yeyq.kursakademiaandroida.core.base.BaseAdapter
 import com.yeyq.kursakademiaandroida.features.characters.presentation.model.CharacterDisplayable
 import kotlinx.android.synthetic.main.item_episode.view.*
 
-class CharacterAdapter : RecyclerView.Adapter<CharacterAdapter.CharacterViewHolder>() {
+class CharacterAdapter : BaseAdapter<CharacterDisplayable>() {
 
-    private val characters by lazy { mutableListOf<CharacterDisplayable>() }
-
-    fun setCharacters(characters: List<CharacterDisplayable>) {
-        if (characters.isNotEmpty()) {
-            this.characters.clear()
-        }
-
-        this.characters.addAll(characters)
-        notifyDataSetChanged()
-    }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharacterViewHolder {
+    override fun onCreateViewHolderBase(parent: ViewGroup, viewType: Int): CharacterViewHolder {
         val itemView = LayoutInflater
             .from(parent.context)
             .inflate(R.layout.item_character, parent, false)
@@ -31,11 +21,9 @@ class CharacterAdapter : RecyclerView.Adapter<CharacterAdapter.CharacterViewHold
         )
     }
 
-    override fun getItemCount(): Int = characters.size
-
-    override fun onBindViewHolder(holder: CharacterViewHolder, position: Int) {
-        val character = characters[position]
-        holder.bind(character)
+    override fun onBindViewHolderBase(holder: RecyclerView.ViewHolder, position: Int) {
+        val character = items[position]
+        (holder as CharacterViewHolder).bind(character)
     }
 
     class CharacterViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

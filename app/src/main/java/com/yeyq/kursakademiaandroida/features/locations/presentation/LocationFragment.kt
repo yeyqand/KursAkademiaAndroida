@@ -4,7 +4,7 @@ import androidx.lifecycle.observe
 import androidx.recyclerview.widget.RecyclerView
 import com.yeyq.kursakademiaandroida.R
 import com.yeyq.kursakademiaandroida.core.base.BaseFragment
-import com.yeyq.kursakademiaandroida.features.locations.preentations.model.LocationDisplayable
+import com.yeyq.kursakademiaandroida.features.locations.presentation.model.LocationDisplayable
 import kotlinx.android.synthetic.main.fragment_episode.*
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -49,7 +49,7 @@ class LocationFragment : BaseFragment<LocationViewModel>(R.layout.fragment_locat
     }
 
     private fun showLocations(locations: List<LocationDisplayable>) {
-        adapter.setLocations(locations)
+        adapter.setItems(locations)
     }
 
 }

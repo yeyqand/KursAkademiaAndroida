@@ -49,7 +49,7 @@ class EpisodeFragment : BaseFragment<EpisodeViewModel>(R.layout.fragment_episode
     }
 
     private fun showEpisodes(episodes: List<EpisodeDisplayable>) {
-        adapter.setEpisodes(episodes)
+        adapter.setItems(episodes)
     }
 
 }
