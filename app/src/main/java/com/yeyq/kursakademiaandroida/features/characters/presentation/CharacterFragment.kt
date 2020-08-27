@@ -52,7 +52,6 @@ class CharacterFragment : BaseFragment<CharacterViewModel>(R.layout.fragment_cha
     private fun observeCharacters() {
         viewModel.characters.observe(this) {
             showCharacters(it)
-            // display characters
         }
     }
 
