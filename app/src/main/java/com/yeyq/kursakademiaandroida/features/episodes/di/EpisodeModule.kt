@@ -11,11 +11,11 @@ import org.koin.dsl.module
 
 val episodeModule = module {
     //data
-    factory<EpisodeRepository> { EpisodeRepositoryImpl(get(), get(), get()) }
+    factory<EpisodeRepository> { EpisodeRepositoryImpl(get(), get(), get(), get()) }
     factory { GetEpisodesUseCase(get()) }
 
     //domain
-    viewModel { EpisodeViewModel(get()) }
+    viewModel { EpisodeViewModel(get(), get()) }
 
     //presentation
     factory { EpisodeFragment() }

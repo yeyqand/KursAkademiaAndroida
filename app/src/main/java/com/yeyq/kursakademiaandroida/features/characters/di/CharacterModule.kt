@@ -11,11 +11,11 @@ import org.koin.dsl.module
 
 val characterModule = module {
     //data
-    factory<CharacterRepository> { CharacterRepositoryImpl(get(), get(), get()) }
+    factory<CharacterRepository> { CharacterRepositoryImpl(get(), get(), get(), get()) }
     factory { GetCharactersUseCase(get()) }
 
     //domain
-    viewModel { CharacterViewModel(get()) }
+    viewModel { CharacterViewModel(get(), get()) }
 
     //presentation
     factory { CharacterFragment() }
