@@ -2,6 +2,7 @@ package com.yeyq.kursakademiaandroida.features.locations.data.repository
 
 import com.yeyq.kursakademiaandroida.core.api.RickAndMortyApi
 import com.yeyq.kursakademiaandroida.core.api.model.LocationResponse
+import com.yeyq.kursakademiaandroida.core.exception.ErrorWrapper
 import com.yeyq.kursakademiaandroida.core.network.NetworkStateProvider
 import com.yeyq.kursakademiaandroida.features.locations.data.local.model.LocationCached
 import com.yeyq.kursakademiaandroida.features.locations.data.local.model.LocationDao
@@ -25,9 +26,10 @@ internal class LocationRepositoryImplTest {
         val networkStateProvider = mockk<NetworkStateProvider> {
             every { isNetworkAvailable() } returns true
         }
+        val errorWrapper = mockk<ErrorWrapper>(relaxed = true)
 
         val repository: LocationRepository =
-            LocationRepositoryImpl(api, locationDao, networkStateProvider)
+            LocationRepositoryImpl(api, locationDao, networkStateProvider, errorWrapper)
 
         //when
         runBlocking { repository.getLocations() }
@@ -46,9 +48,10 @@ internal class LocationRepositoryImplTest {
         val networkStateProvider = mockk<NetworkStateProvider> {
             every { isNetworkAvailable() } returns true
         }
+        val errorWrapper = mockk<ErrorWrapper>(relaxed = true)
 
         val repository: LocationRepository =
-            LocationRepositoryImpl(api, locationDao, networkStateProvider)
+            LocationRepositoryImpl(api, locationDao, networkStateProvider, errorWrapper)
 
         //when
         runBlocking { repository.getLocations() }
@@ -67,9 +70,10 @@ internal class LocationRepositoryImplTest {
         val networkStateProvider = mockk<NetworkStateProvider> {
             every { isNetworkAvailable() } returns false
         }
+        val errorWrapper = mockk<ErrorWrapper>(relaxed = true)
 
         val repository: LocationRepository =
-            LocationRepositoryImpl(api, locationDao, networkStateProvider)
+            LocationRepositoryImpl(api, locationDao, networkStateProvider, errorWrapper)
 
         //when
         runBlocking { repository.getLocations() }
