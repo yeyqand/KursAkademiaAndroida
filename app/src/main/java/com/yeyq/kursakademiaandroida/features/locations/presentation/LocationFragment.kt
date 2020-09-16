@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.yeyq.kursakademiaandroida.R
 import com.yeyq.kursakademiaandroida.core.base.BaseFragment
 import com.yeyq.kursakademiaandroida.features.locations.presentation.model.LocationDisplayable
-import kotlinx.android.synthetic.main.fragment_episode.*
+import kotlinx.android.synthetic.main.fragment_episodes.*
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 

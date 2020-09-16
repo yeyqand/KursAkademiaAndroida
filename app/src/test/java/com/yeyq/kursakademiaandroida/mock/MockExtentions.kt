@@ -6,6 +6,7 @@ import com.yeyq.kursakademiaandroida.features.characters.domain.model.Character
 import com.yeyq.kursakademiaandroida.features.characters.domain.model.LocationCharacter
 import com.yeyq.kursakademiaandroida.features.characters.domain.model.LocationCharacter.Companion
 import com.yeyq.kursakademiaandroida.features.characters.domain.model.OriginCharacter
+import com.yeyq.kursakademiaandroida.features.episodes.all.presentation.model.EpisodeDisplayable
 import com.yeyq.kursakademiaandroida.features.episodes.data.local.model.EpisodeCached
 import com.yeyq.kursakademiaandroida.features.episodes.domain.model.Episode
 import com.yeyq.kursakademiaandroida.features.locations.data.local.model.LocationCached
@@ -177,4 +178,14 @@ fun Location.Companion.mock() = Location(
     dimension = "location dimension",
     residents = emptyList(),
     url = "location url"
+)
+
+@TestOnly
+fun EpisodeDisplayable.Companion.mock() = EpisodeDisplayable(
+    id = 1,
+    name = "episode name",
+    airDate = "episode airDate",
+    code = "episode code",
+    characters = emptyList(),
+    url = "episode url"
 )

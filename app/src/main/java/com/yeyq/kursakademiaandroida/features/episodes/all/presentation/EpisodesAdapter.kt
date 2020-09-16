@@ -1,4 +1,4 @@
-package com.yeyq.kursakademiaandroida.features.episodes.presentation
+package com.yeyq.kursakademiaandroida.features.episodes.all.presentation
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,19 +6,18 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.yeyq.kursakademiaandroida.R
 import com.yeyq.kursakademiaandroida.core.base.BaseAdapter
-import com.yeyq.kursakademiaandroida.features.episodes.presentation.model.EpisodeDisplayable
+import com.yeyq.kursakademiaandroida.features.episodes.all.presentation.model.EpisodeDisplayable
 import kotlinx.android.synthetic.main.item_episode.view.*
 
-class EpisodeAdapter : BaseAdapter<EpisodeDisplayable>() {
+class EpisodesAdapter(private val episodesViewModel: EpisodesViewModel) :
+    BaseAdapter<EpisodeDisplayable>() {
 
     override fun onCreateViewHolderBase(parent: ViewGroup, viewType: Int): EpisodeViewHolder {
         val itemView = LayoutInflater
             .from(parent.context)
             .inflate(R.layout.item_episode, parent, false)
 
-        return EpisodeViewHolder(
-            itemView
-        )
+        return EpisodeViewHolder(itemView, episodesViewModel)
     }
 
     override fun onBindViewHolderBase(holder: RecyclerView.ViewHolder, position: Int) {
@@ -26,13 +25,17 @@ class EpisodeAdapter : BaseAdapter<EpisodeDisplayable>() {
         (holder as EpisodeViewHolder).bind(episode)
     }
 
-    class EpisodeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class EpisodeViewHolder(itemView: View, private val episodesViewModel: EpisodesViewModel) :
+        RecyclerView.ViewHolder(itemView) {
 
         fun bind(episode: EpisodeDisplayable) {
             with(itemView) {
                 codeTextView.text = episode.code
                 titleTextView.text = episode.name
                 airDateTextView.text = episode.airDate
+                setOnClickListener {
+                    episodesViewModel.onEpisodeClick(episode)
+                }
             }
         }
     }

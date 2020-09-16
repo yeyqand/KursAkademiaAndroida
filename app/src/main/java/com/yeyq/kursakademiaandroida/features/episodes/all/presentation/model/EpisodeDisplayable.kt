@@ -1,7 +1,10 @@
-package com.yeyq.kursakademiaandroida.features.episodes.presentation.model
+package com.yeyq.kursakademiaandroida.features.episodes.all.presentation.model
 
+import android.os.Parcelable
 import com.yeyq.kursakademiaandroida.features.episodes.domain.model.Episode
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class EpisodeDisplayable(
     val id: Int,
     val name: String,
@@ -9,7 +12,7 @@ data class EpisodeDisplayable(
     val code: String,
     val characters: List<String>,
     val url: String
-) {
+) : Parcelable {
 
     constructor(episode: Episode) : this(
         id = episode.id,
@@ -19,4 +22,6 @@ data class EpisodeDisplayable(
         characters = episode.characters,
         url = episode.url
     )
+
+    companion object
 }

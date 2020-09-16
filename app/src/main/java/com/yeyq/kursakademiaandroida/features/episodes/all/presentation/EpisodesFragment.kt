@@ -1,19 +1,19 @@
-package com.yeyq.kursakademiaandroida.features.episodes.presentation
+package com.yeyq.kursakademiaandroida.features.episodes.all.presentation
 
 import android.view.View
 import androidx.lifecycle.observe
 import androidx.recyclerview.widget.RecyclerView
 import com.yeyq.kursakademiaandroida.R
 import com.yeyq.kursakademiaandroida.core.base.BaseFragment
-import com.yeyq.kursakademiaandroida.features.episodes.presentation.model.EpisodeDisplayable
-import kotlinx.android.synthetic.main.fragment_episode.*
+import com.yeyq.kursakademiaandroida.features.episodes.all.presentation.model.EpisodeDisplayable
+import kotlinx.android.synthetic.main.fragment_episodes.*
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class EpisodeFragment : BaseFragment<EpisodeViewModel>(R.layout.fragment_episode) {
+class EpisodesFragment : BaseFragment<EpisodesViewModel>(R.layout.fragment_episodes) {
 
-    override val viewModel: EpisodeViewModel by viewModel()
-    private val adapter: EpisodeAdapter by inject()
+    override val viewModel: EpisodesViewModel by viewModel()
+    private val adapter: EpisodesAdapter by inject()
     private val layoutManager: RecyclerView.LayoutManager by inject()
 
     override fun initViews() {
@@ -38,6 +38,14 @@ class EpisodeFragment : BaseFragment<EpisodeViewModel>(R.layout.fragment_episode
     override fun onPendingState() {
         super.onPendingState()
         showProgressBar()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        with(recyclerView) {
+            layoutManager = null
+            adapter = null
+        }
     }
 
     private fun showProgressBar() {
