@@ -9,6 +9,7 @@ import com.yeyq.kursakademiaandroida.features.characters.domain.model.OriginChar
 import com.yeyq.kursakademiaandroida.features.episodes.all.presentation.model.EpisodeDisplayable
 import com.yeyq.kursakademiaandroida.features.episodes.data.local.model.EpisodeCached
 import com.yeyq.kursakademiaandroida.features.episodes.domain.model.Episode
+import com.yeyq.kursakademiaandroida.features.locations.all.presentation.model.LocationDisplayable
 import com.yeyq.kursakademiaandroida.features.locations.data.local.model.LocationCached
 import com.yeyq.kursakademiaandroida.features.locations.domain.model.Location
 import org.jetbrains.annotations.TestOnly
@@ -188,4 +189,14 @@ fun EpisodeDisplayable.Companion.mock() = EpisodeDisplayable(
     code = "episode code",
     characters = emptyList(),
     url = "episode url"
+)
+
+@TestOnly
+fun LocationDisplayable.Companion.mock() = LocationDisplayable(
+    id = 2,
+    name = "location name",
+    type = "location type",
+    dimension = "location dimension",
+    residents = emptyList(),
+    url = "location url"
 )

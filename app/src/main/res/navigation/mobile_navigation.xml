@@ -13,9 +13,15 @@
 
     <fragment
         android:id="@+id/locations_screen"
-        android:name="com.yeyq.kursakademiaandroida.features.locations.presentation.LocationFragment"
+        android:name="com.yeyq.kursakademiaandroida.features.locations.all.presentation.LocationsFragment"
         android:label="@string/title_locations"
-        tools:layout="@layout/fragment_location" />
+        tools:layout="@layout/fragment_location">
+
+        <action
+            android:id="@+id/action_navigate_from_locations_screen_to_location_details_fragment"
+            app:destination="@id/location_details_screen"
+            app:popUpTo="@id/episodes_screen" />
+    </fragment>
 
     <fragment
         android:id="@+id/episodes_screen"
@@ -34,4 +40,10 @@
         android:name="com.yeyq.kursakademiaandroida.features.episodes.details.presentation.EpisodeDetailsFragment"
         android:label="@string/title_episode_details"
         tools:layout="@layout/fragment_episode_details" />
+
+    <fragment
+        android:id="@+id/location_details_screen"
+        android:name="com.yeyq.kursakademiaandroida.features.locations.details.presentation.LocationDetailsFragment"
+        android:label="@string/title_location_details"
+        tools:layout="@layout/fragment_location_details" />
 </navigation>

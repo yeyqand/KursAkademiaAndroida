@@ -1,11 +1,14 @@
 package com.yeyq.kursakademiaandroida.features.locations.di
 
+import com.yeyq.kursakademiaandroida.features.locations.all.presentation.LocationsAdapter
+import com.yeyq.kursakademiaandroida.features.locations.all.presentation.LocationsFragment
+import com.yeyq.kursakademiaandroida.features.locations.all.presentation.LocationsViewModel
 import com.yeyq.kursakademiaandroida.features.locations.data.repository.LocationRepositoryImpl
+import com.yeyq.kursakademiaandroida.features.locations.details.presentation.LocationDetailsViewModel
 import com.yeyq.kursakademiaandroida.features.locations.domain.GetLocationsUseCase
 import com.yeyq.kursakademiaandroida.features.locations.domain.LocationRepository
-import com.yeyq.kursakademiaandroida.features.locations.presentation.LocationAdapter
-import com.yeyq.kursakademiaandroida.features.locations.presentation.LocationFragment
-import com.yeyq.kursakademiaandroida.features.locations.presentation.LocationViewModel
+import com.yeyq.kursakademiaandroida.features.locations.navigation.LocationNavigator
+import com.yeyq.kursakademiaandroida.features.locations.navigation.LocationNavigatorImpl
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
@@ -15,10 +18,11 @@ val locationModule = module {
     factory { GetLocationsUseCase(get()) }
 
     //domain
-    viewModel { LocationViewModel(get(), get()) }
+    viewModel { LocationsViewModel(get(), get(), get()) }
+    viewModel { LocationDetailsViewModel() }
 
     //presentation
-    factory { LocationFragment() }
-    factory { LocationAdapter() }
-
+    factory { LocationsFragment() }
+    factory { LocationsAdapter(get()) }
+    factory<LocationNavigator> { LocationNavigatorImpl(get()) }
 }

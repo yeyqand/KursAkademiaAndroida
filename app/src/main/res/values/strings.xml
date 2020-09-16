@@ -10,6 +10,7 @@
     <string name="title_locations">Locations</string>
     <string name="title_episodes">Episodes</string>
     <string name="title_episode_details">Episode Details</string>
+    <string name="title_location_details">Location Details</string>
     <string name="air_date">Air date: %s</string>
     <string name="characters">Characters:</string>
 </resources>

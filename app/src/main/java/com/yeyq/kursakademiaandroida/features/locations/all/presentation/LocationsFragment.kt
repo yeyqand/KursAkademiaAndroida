@@ -1,19 +1,19 @@
-package com.yeyq.kursakademiaandroida.features.locations.presentation
+package com.yeyq.kursakademiaandroida.features.locations.all.presentation
 
 import android.view.View
 import androidx.lifecycle.observe
 import androidx.recyclerview.widget.RecyclerView
 import com.yeyq.kursakademiaandroida.R
 import com.yeyq.kursakademiaandroida.core.base.BaseFragment
-import com.yeyq.kursakademiaandroida.features.locations.presentation.model.LocationDisplayable
+import com.yeyq.kursakademiaandroida.features.locations.all.presentation.model.LocationDisplayable
 import kotlinx.android.synthetic.main.fragment_episodes.*
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class LocationFragment : BaseFragment<LocationViewModel>(R.layout.fragment_location) {
+class LocationsFragment : BaseFragment<LocationsViewModel>(R.layout.fragment_location) {
 
-    override val viewModel: LocationViewModel by viewModel()
-    private val adapter: LocationAdapter by inject()
+    override val viewModel: LocationsViewModel by viewModel()
+    private val adapter: LocationsAdapter by inject()
     private val layoutManager: RecyclerView.LayoutManager by inject()
 
     override fun initViews() {
@@ -38,6 +38,14 @@ class LocationFragment : BaseFragment<LocationViewModel>(R.layout.fragment_locat
     override fun onPendingState() {
         super.onPendingState()
         showProgressBar()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        with(recyclerView) {
+            layoutManager = null
+            adapter = null
+        }
     }
 
     private fun showProgressBar() {
