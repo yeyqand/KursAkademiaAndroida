@@ -40,6 +40,12 @@ class CharacterFragment : BaseFragment<CharacterViewModel>(R.layout.fragment_cha
         showProgressBar()
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        recyclerView.layoutManager = null
+        recyclerView.adapter = null
+    }
+
     private fun showProgressBar() {
         progressBar.visibility = View.VISIBLE
     }

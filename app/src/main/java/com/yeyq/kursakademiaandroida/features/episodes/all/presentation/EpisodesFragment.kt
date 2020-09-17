@@ -10,7 +10,8 @@ import kotlinx.android.synthetic.main.fragment_episodes.*
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class EpisodesFragment : BaseFragment<EpisodesViewModel>(R.layout.fragment_episodes) {
+class EpisodesFragment : BaseFragment<EpisodesViewModel>(R.layout.fragment_episodes),
+    EpisodesAdapter.OnEpisodesListeners {
 
     override val viewModel: EpisodesViewModel by viewModel()
     private val adapter: EpisodesAdapter by inject()
@@ -22,6 +23,7 @@ class EpisodesFragment : BaseFragment<EpisodesViewModel>(R.layout.fragment_episo
     }
 
     private fun initRecycler() {
+        adapter.listeners = this
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = adapter
     }
@@ -46,6 +48,10 @@ class EpisodesFragment : BaseFragment<EpisodesViewModel>(R.layout.fragment_episo
             layoutManager = null
             adapter = null
         }
+    }
+
+    override fun onClick(episodeDisplayable: EpisodeDisplayable) {
+        viewModel.onEpisodeClick(episodeDisplayable)
     }
 
     private fun showProgressBar() {

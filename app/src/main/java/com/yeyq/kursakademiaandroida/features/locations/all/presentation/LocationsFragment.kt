@@ -10,7 +10,8 @@ import kotlinx.android.synthetic.main.fragment_episodes.*
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class LocationsFragment : BaseFragment<LocationsViewModel>(R.layout.fragment_location) {
+class LocationsFragment : BaseFragment<LocationsViewModel>(R.layout.fragment_location),
+    LocationsAdapter.OnLocationsListeners {
 
     override val viewModel: LocationsViewModel by viewModel()
     private val adapter: LocationsAdapter by inject()
@@ -22,6 +23,7 @@ class LocationsFragment : BaseFragment<LocationsViewModel>(R.layout.fragment_loc
     }
 
     private fun initRecycler() {
+        adapter.listeners = this
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = adapter
     }
@@ -46,6 +48,10 @@ class LocationsFragment : BaseFragment<LocationsViewModel>(R.layout.fragment_loc
             layoutManager = null
             adapter = null
         }
+    }
+
+    override fun onClick(locationDisplayable: LocationDisplayable) {
+        viewModel.onLocationClick(locationDisplayable)
     }
 
     private fun showProgressBar() {

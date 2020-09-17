@@ -23,6 +23,6 @@ val locationModule = module {
 
     //presentation
     factory { LocationsFragment() }
-    factory { LocationsAdapter(get()) }
+    factory { LocationsAdapter() }
     factory<LocationNavigator> { LocationNavigatorImpl(get()) }
 }

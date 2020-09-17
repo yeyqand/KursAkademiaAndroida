@@ -9,18 +9,16 @@ import com.yeyq.kursakademiaandroida.core.base.BaseAdapter
 import com.yeyq.kursakademiaandroida.features.locations.all.presentation.model.LocationDisplayable
 import kotlinx.android.synthetic.main.item_location.view.*
 
-class LocationsAdapter(private val locationsViewModel: LocationsViewModel) :
-    BaseAdapter<LocationDisplayable>() {
+class LocationsAdapter : BaseAdapter<LocationDisplayable>() {
+
+    lateinit var listeners: OnLocationsListeners
 
     override fun onCreateViewHolderBase(parent: ViewGroup, viewType: Int): LocationViewHolder {
         val itemView = LayoutInflater
             .from(parent.context)
             .inflate(R.layout.item_location, parent, false)
 
-        return LocationViewHolder(
-            itemView,
-            locationsViewModel
-        )
+        return LocationViewHolder(itemView, listeners)
     }
 
     override fun onBindViewHolderBase(holder: RecyclerView.ViewHolder, position: Int) {
@@ -28,7 +26,7 @@ class LocationsAdapter(private val locationsViewModel: LocationsViewModel) :
         (holder as LocationViewHolder).bind(location)
     }
 
-    class LocationViewHolder(itemView: View, val locationsViewModel: LocationsViewModel) :
+    class LocationViewHolder(itemView: View, private val listeners: OnLocationsListeners) :
         RecyclerView.ViewHolder(itemView) {
 
         fun bind(location: LocationDisplayable) {
@@ -37,9 +35,13 @@ class LocationsAdapter(private val locationsViewModel: LocationsViewModel) :
                 nameTextView.text = location.name
                 typeTextView.text = location.type
                 setOnClickListener {
-                    locationsViewModel.onLocationClick(location)
+                    listeners.onClick(location)
                 }
             }
         }
+    }
+
+    interface OnLocationsListeners {
+        fun onClick(locationDisplayable: LocationDisplayable)
     }
 }
