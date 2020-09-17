@@ -1,4 +1,4 @@
-package com.yeyq.kursakademiaandroida.features.characters.presentation
+package com.yeyq.kursakademiaandroida.features.characters.all.presentation
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -6,12 +6,14 @@ import androidx.lifecycle.map
 import androidx.lifecycle.viewModelScope
 import com.yeyq.kursakademiaandroida.core.base.BaseViewModel
 import com.yeyq.kursakademiaandroida.core.exception.ErrorMapper
+import com.yeyq.kursakademiaandroida.features.characters.all.presentation.model.CharacterDisplayable
 import com.yeyq.kursakademiaandroida.features.characters.domain.GetCharactersUseCase
 import com.yeyq.kursakademiaandroida.features.characters.domain.model.Character
-import com.yeyq.kursakademiaandroida.features.characters.presentation.model.CharacterDisplayable
+import com.yeyq.kursakademiaandroida.features.characters.navigation.CharacterNavigator
 
-class CharacterViewModel(
+class CharactersViewModel(
     private val getCharactersUseCase: GetCharactersUseCase,
+    private val characterNavigator: CharacterNavigator,
     errorMapper: ErrorMapper
 ) : BaseViewModel(errorMapper) {
 
@@ -36,6 +38,10 @@ class CharacterViewModel(
             result.onSuccess { characterLiveData.value = it }
             result.onFailure(this::handleFailure)
         }
+    }
+
+    fun onCharacterClick(character: CharacterDisplayable) {
+        characterNavigator.openCharacterDetailsScreen(character)
     }
 
 }

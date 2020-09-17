@@ -1,11 +1,13 @@
-package com.yeyq.kursakademiaandroida.features.characters.presentation
+package com.yeyq.kursakademiaandroida.features.characters.all.presentation
 
 import androidx.lifecycle.Observer
 import androidx.lifecycle.viewModelScope
 import com.yeyq.kursakademiaandroida.core.base.UiState
 import com.yeyq.kursakademiaandroida.core.exception.ErrorMapper
+import com.yeyq.kursakademiaandroida.features.characters.all.presentation.model.CharacterDisplayable
 import com.yeyq.kursakademiaandroida.features.characters.domain.GetCharactersUseCase
 import com.yeyq.kursakademiaandroida.features.characters.domain.model.Character
+import com.yeyq.kursakademiaandroida.features.characters.navigation.CharacterNavigator
 import com.yeyq.kursakademiaandroida.mock.mock
 import com.yeyq.kursakademiaandroida.utils.ViewModelTest
 import com.yeyq.kursakademiaandroida.utils.getOrAwaitValue
@@ -16,15 +18,31 @@ import io.mockk.verify
 import org.amshove.kluent.shouldBe
 import org.junit.jupiter.api.Test
 
-internal class CharacterViewModelTest : ViewModelTest() {
+internal class CharactersViewModelTest : ViewModelTest() {
 
+    @Test
+    fun `WHEN character is clicked THEN open character details screen`() {
+        //given
+        val useCase = mockk<GetCharactersUseCase>(relaxed = true)
+        val characterNavigator = mockk<CharacterNavigator>(relaxed = true)
+        val errorMapper = mockk<ErrorMapper>(relaxed = true)
+        val viewModel = CharactersViewModel(useCase, characterNavigator, errorMapper)
+        val character = CharacterDisplayable.mock()
+
+        //when
+        viewModel.onCharacterClick(character)
+
+        //then
+        verify { characterNavigator.openCharacterDetailsScreen(character) }
+    }
 
     @Test
     fun `WHEN character live data is observed THEN set pending state`() {
         //given
         val useCase = mockk<GetCharactersUseCase>(relaxed = true)
+        val characterNavigator = mockk<CharacterNavigator>(relaxed = true)
         val errorMapper = mockk<ErrorMapper>(relaxed = true)
-        val viewModel = CharacterViewModel(useCase, errorMapper)
+        val viewModel = CharactersViewModel(useCase, characterNavigator, errorMapper)
 
         //when
         viewModel.characters.observeForTesting()
@@ -37,8 +55,9 @@ internal class CharacterViewModelTest : ViewModelTest() {
     fun `WHEN character live data is observed THEN invoke use case to get characters`() {
         //given
         val useCase = mockk<GetCharactersUseCase>(relaxed = true)
+        val characterNavigator = mockk<CharacterNavigator>(relaxed = true)
         val errorMapper = mockk<ErrorMapper>(relaxed = true)
-        val viewModel = CharacterViewModel(useCase, errorMapper)
+        val viewModel = CharactersViewModel(useCase, characterNavigator, errorMapper)
 
         //when
         viewModel.characters.observeForTesting()
@@ -56,8 +75,9 @@ internal class CharacterViewModelTest : ViewModelTest() {
                 lastArg<(Result<List<Character>>) -> Unit>()(Result.success(characters))
             }
         }
+        val characterNavigator = mockk<CharacterNavigator>(relaxed = true)
         val errorMapper = mockk<ErrorMapper>(relaxed = true)
-        val viewModel = CharacterViewModel(useCase, errorMapper)
+        val viewModel = CharactersViewModel(useCase, characterNavigator, errorMapper)
 
         //when
         viewModel.characters.observeForTesting()
@@ -85,11 +105,12 @@ internal class CharacterViewModelTest : ViewModelTest() {
                 lastArg<(Result<List<Character>>) -> Unit>()(Result.failure(throwable))
             }
         }
+        val characterNavigator = mockk<CharacterNavigator>(relaxed = true)
         val observer = mockk<Observer<String>>(relaxed = true)
         val errorMapper = mockk<ErrorMapper> {
             every { map(any()) } returns throwable.message!!
         }
-        val viewModel = CharacterViewModel(useCase, errorMapper)
+        val viewModel = CharactersViewModel(useCase, characterNavigator, errorMapper)
 
         //when
         viewModel.message.observeForever(observer)

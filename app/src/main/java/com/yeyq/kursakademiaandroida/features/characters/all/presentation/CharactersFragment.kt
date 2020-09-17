@@ -1,19 +1,20 @@
-package com.yeyq.kursakademiaandroida.features.characters.presentation
+package com.yeyq.kursakademiaandroida.features.characters.all.presentation
 
 import android.view.View
 import androidx.lifecycle.observe
 import androidx.recyclerview.widget.RecyclerView
 import com.yeyq.kursakademiaandroida.R
 import com.yeyq.kursakademiaandroida.core.base.BaseFragment
-import com.yeyq.kursakademiaandroida.features.characters.presentation.model.CharacterDisplayable
+import com.yeyq.kursakademiaandroida.features.characters.all.presentation.model.CharacterDisplayable
 import kotlinx.android.synthetic.main.fragment_episodes.*
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class CharacterFragment : BaseFragment<CharacterViewModel>(R.layout.fragment_character) {
+class CharactersFragment : BaseFragment<CharactersViewModel>(R.layout.fragment_character),
+    CharactersAdapter.OnCharactersListeners {
 
-    override val viewModel: CharacterViewModel by viewModel()
-    private val adapter: CharacterAdapter by inject()
+    override val viewModel: CharactersViewModel by viewModel()
+    private val adapter: CharactersAdapter by inject()
     private val layoutManager: RecyclerView.LayoutManager by inject()
 
     override fun initViews() {
@@ -22,6 +23,7 @@ class CharacterFragment : BaseFragment<CharacterViewModel>(R.layout.fragment_cha
     }
 
     private fun initRecycler() {
+        adapter.listeners = this
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = adapter
     }
@@ -44,6 +46,10 @@ class CharacterFragment : BaseFragment<CharacterViewModel>(R.layout.fragment_cha
         super.onDestroyView()
         recyclerView.layoutManager = null
         recyclerView.adapter = null
+    }
+
+    override fun onClick(characterDisplayable: CharacterDisplayable) {
+        viewModel.onCharacterClick(characterDisplayable)
     }
 
     private fun showProgressBar() {

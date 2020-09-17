@@ -1,6 +1,7 @@
 package com.yeyq.kursakademiaandroida.mock
 
 import com.yeyq.kursakademiaandroida.core.api.model.*
+import com.yeyq.kursakademiaandroida.features.characters.all.presentation.model.CharacterDisplayable
 import com.yeyq.kursakademiaandroida.features.characters.data.local.model.CharacterCached
 import com.yeyq.kursakademiaandroida.features.characters.domain.model.Character
 import com.yeyq.kursakademiaandroida.features.characters.domain.model.LocationCharacter
@@ -183,20 +184,15 @@ fun Location.Companion.mock() = Location(
 
 @TestOnly
 fun EpisodeDisplayable.Companion.mock() = EpisodeDisplayable(
-    id = 1,
-    name = "episode name",
-    airDate = "episode airDate",
-    code = "episode code",
-    characters = emptyList(),
-    url = "episode url"
+    Episode.mock()
 )
 
 @TestOnly
 fun LocationDisplayable.Companion.mock() = LocationDisplayable(
-    id = 2,
-    name = "location name",
-    type = "location type",
-    dimension = "location dimension",
-    residents = emptyList(),
-    url = "location url"
+    Location.mock()
+)
+
+@TestOnly
+fun CharacterDisplayable.Companion.mock() = CharacterDisplayable(
+    Character.mock()
 )
