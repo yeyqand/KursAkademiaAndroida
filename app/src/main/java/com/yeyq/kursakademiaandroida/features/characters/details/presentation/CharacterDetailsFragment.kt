@@ -1,6 +1,7 @@
 package com.yeyq.kursakademiaandroida.features.characters.details.presentation
 
 import android.os.Bundle
+import androidx.lifecycle.observe
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.yeyq.kursakademiaandroida.R
@@ -13,7 +14,6 @@ class CharacterDetailsFragment :
     BaseFragment<CharacterDetailsViewModel>(R.layout.fragment_character_details) {
 
     override val viewModel: CharacterDetailsViewModel by viewModel()
-    private var characterDisplayable: CharacterDisplayable? = null
 
     companion object {
         const val CHARACTER_DETAILS_KEY = "characterDetailsKey"
@@ -21,23 +21,31 @@ class CharacterDetailsFragment :
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            characterDisplayable = it.getParcelable(CHARACTER_DETAILS_KEY)
+        arguments?.let { onCharacterPassed(it) }
+    }
+
+    override fun initObservers() {
+        super.initObservers()
+        observeCharacter()
+    }
+
+    private fun onCharacterPassed(bundle: Bundle) {
+        bundle.getParcelable<CharacterDisplayable>(CHARACTER_DETAILS_KEY)?.let {
+            viewModel.setCharacter(it)
         }
     }
 
-    override fun initViews() {
-        super.initViews()
-        showCharacterDetails()
+    private fun observeCharacter() {
+        viewModel.character.observe(this) {
+            showCharacterDetails(it)
+        }
     }
 
-    private fun showCharacterDetails() {
-        characterDisplayable?.let {
-            nameTextView.text = it.name
-            Glide.with(this)
-                .load(it.image)
-                .apply(RequestOptions.circleCropTransform())
-                .into(imageView)
-        }
+    private fun showCharacterDetails(character: CharacterDisplayable) {
+        nameTextView.text = character.name
+        Glide.with(this)
+            .load(character.image)
+            .apply(RequestOptions.circleCropTransform())
+            .into(imageView)
     }
 }

@@ -1,6 +1,7 @@
 package com.yeyq.kursakademiaandroida.features.episodes.details.presentation
 
 import android.os.Bundle
+import androidx.lifecycle.observe
 import com.yeyq.kursakademiaandroida.R
 import com.yeyq.kursakademiaandroida.core.base.BaseFragment
 import com.yeyq.kursakademiaandroida.features.episodes.all.presentation.model.EpisodeDisplayable
@@ -11,7 +12,6 @@ class EpisodeDetailsFragment :
     BaseFragment<EpisodeDetailsViewModel>(R.layout.fragment_episode_details) {
 
     override val viewModel: EpisodeDetailsViewModel by viewModel()
-    private var episodeDisplayable: EpisodeDisplayable? = null
 
     companion object {
         const val EPISODE_DETAILS_KEY = "episodeDetailsKey"
@@ -19,21 +19,29 @@ class EpisodeDetailsFragment :
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            episodeDisplayable = it.getParcelable(EPISODE_DETAILS_KEY)
+        arguments?.let { onEpisodePassed(it) }
+    }
+
+    override fun initObservers() {
+        super.initObservers()
+        observeEpisode()
+    }
+
+    private fun onEpisodePassed(bundle: Bundle) {
+        bundle.getParcelable<EpisodeDisplayable>(EPISODE_DETAILS_KEY)?.let {
+            viewModel.setEpisode(it)
         }
     }
 
-    override fun initViews() {
-        super.initViews()
-        showEpisodeDetails()
+    private fun observeEpisode() {
+        viewModel.episode.observe(this) {
+            showEpisodeDetails(it)
+        }
     }
 
-    private fun showEpisodeDetails() {
-        episodeDisplayable?.let {
-            codeTextView.text = it.code
-            titleTextView.text = it.name
-            airDateTextView.text = getString(R.string.air_date, it.airDate)
-        }
+    private fun showEpisodeDetails(episode: EpisodeDisplayable) {
+        codeTextView.text = episode.code
+        titleTextView.text = episode.name
+        airDateTextView.text = getString(R.string.air_date, episode.airDate)
     }
 }

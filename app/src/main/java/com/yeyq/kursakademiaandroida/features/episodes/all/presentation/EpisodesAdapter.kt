@@ -11,14 +11,14 @@ import kotlinx.android.synthetic.main.item_episode.view.*
 
 class EpisodesAdapter : BaseAdapter<EpisodeDisplayable>() {
 
-    lateinit var listeners: OnEpisodesListeners
+    lateinit var listener: OnEpisodesListener
 
     override fun onCreateViewHolderBase(parent: ViewGroup, viewType: Int): EpisodeViewHolder {
         val itemView = LayoutInflater
             .from(parent.context)
             .inflate(R.layout.item_episode, parent, false)
 
-        return EpisodeViewHolder(itemView, listeners)
+        return EpisodeViewHolder(itemView, listener)
     }
 
     override fun onBindViewHolderBase(holder: RecyclerView.ViewHolder, position: Int) {
@@ -26,7 +26,7 @@ class EpisodesAdapter : BaseAdapter<EpisodeDisplayable>() {
         (holder as EpisodeViewHolder).bind(episode)
     }
 
-    class EpisodeViewHolder(itemView: View, private val listeners: OnEpisodesListeners) :
+    class EpisodeViewHolder(itemView: View, private val listener: OnEpisodesListener) :
         RecyclerView.ViewHolder(itemView) {
 
         fun bind(episode: EpisodeDisplayable) {
@@ -35,13 +35,13 @@ class EpisodesAdapter : BaseAdapter<EpisodeDisplayable>() {
                 titleTextView.text = episode.name
                 airDateTextView.text = episode.airDate
                 setOnClickListener {
-                    listeners.onClick(episode)
+                    listener.onClick(episode)
                 }
             }
         }
     }
 
-    interface OnEpisodesListeners {
+    interface OnEpisodesListener {
         fun onClick(episodeDisplayable: EpisodeDisplayable)
     }
 }

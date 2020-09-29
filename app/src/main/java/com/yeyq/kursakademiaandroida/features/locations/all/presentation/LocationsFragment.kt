@@ -11,7 +11,7 @@ import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LocationsFragment : BaseFragment<LocationsViewModel>(R.layout.fragment_location),
-    LocationsAdapter.OnLocationsListeners {
+    LocationsAdapter.OnLocationsListener {
 
     override val viewModel: LocationsViewModel by viewModel()
     private val adapter: LocationsAdapter by inject()
@@ -23,7 +23,7 @@ class LocationsFragment : BaseFragment<LocationsViewModel>(R.layout.fragment_loc
     }
 
     private fun initRecycler() {
-        adapter.listeners = this
+        adapter.listener = this
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = adapter
     }

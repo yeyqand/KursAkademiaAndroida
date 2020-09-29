@@ -1,6 +1,7 @@
 package com.yeyq.kursakademiaandroida.features.locations.details.presentation
 
 import android.os.Bundle
+import androidx.lifecycle.observe
 import com.yeyq.kursakademiaandroida.R
 import com.yeyq.kursakademiaandroida.core.base.BaseFragment
 import com.yeyq.kursakademiaandroida.features.locations.all.presentation.model.LocationDisplayable
@@ -11,7 +12,6 @@ class LocationDetailsFragment :
     BaseFragment<LocationDetailsViewModel>(R.layout.fragment_location_details) {
 
     override val viewModel: LocationDetailsViewModel by viewModel()
-    private var locationDisplayable: LocationDisplayable? = null
 
     companion object {
         const val LOCATION_DETAILS_KEY = "locationDetailsKey"
@@ -19,21 +19,29 @@ class LocationDetailsFragment :
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            locationDisplayable = it.getParcelable(LOCATION_DETAILS_KEY)
+        arguments?.let { onLocationPassed(it) }
+    }
+
+    override fun initObservers() {
+        super.initObservers()
+        observeLocation()
+    }
+
+    private fun onLocationPassed(bundle: Bundle) {
+        bundle.getParcelable<LocationDisplayable>(LOCATION_DETAILS_KEY)?.let {
+            viewModel.setLocation(it)
         }
     }
 
-    override fun initViews() {
-        super.initViews()
-        showLocationDetails()
+    private fun observeLocation() {
+        viewModel.location.observe(this) {
+            showLocationDetails(it)
+        }
     }
 
-    private fun showLocationDetails() {
-        locationDisplayable?.let {
-            dimensionTextView.text = it.dimension
-            nameTextView.text = it.name
-            typeTextView.text = it.type
-        }
+    private fun showLocationDetails(location: LocationDisplayable) {
+        dimensionTextView.text = location.dimension
+        nameTextView.text = location.name
+        typeTextView.text = location.type
     }
 }

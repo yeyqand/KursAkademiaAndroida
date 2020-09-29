@@ -11,14 +11,14 @@ import kotlinx.android.synthetic.main.item_location.view.*
 
 class LocationsAdapter : BaseAdapter<LocationDisplayable>() {
 
-    lateinit var listeners: OnLocationsListeners
+    lateinit var listener: OnLocationsListener
 
     override fun onCreateViewHolderBase(parent: ViewGroup, viewType: Int): LocationViewHolder {
         val itemView = LayoutInflater
             .from(parent.context)
             .inflate(R.layout.item_location, parent, false)
 
-        return LocationViewHolder(itemView, listeners)
+        return LocationViewHolder(itemView, listener)
     }
 
     override fun onBindViewHolderBase(holder: RecyclerView.ViewHolder, position: Int) {
@@ -26,7 +26,7 @@ class LocationsAdapter : BaseAdapter<LocationDisplayable>() {
         (holder as LocationViewHolder).bind(location)
     }
 
-    class LocationViewHolder(itemView: View, private val listeners: OnLocationsListeners) :
+    class LocationViewHolder(itemView: View, private val listener: OnLocationsListener) :
         RecyclerView.ViewHolder(itemView) {
 
         fun bind(location: LocationDisplayable) {
@@ -35,13 +35,13 @@ class LocationsAdapter : BaseAdapter<LocationDisplayable>() {
                 nameTextView.text = location.name
                 typeTextView.text = location.type
                 setOnClickListener {
-                    listeners.onClick(location)
+                    listener.onClick(location)
                 }
             }
         }
     }
 
-    interface OnLocationsListeners {
+    interface OnLocationsListener {
         fun onClick(locationDisplayable: LocationDisplayable)
     }
 }

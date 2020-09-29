@@ -12,14 +12,14 @@ import kotlinx.android.synthetic.main.item_character.view.*
 
 class CharactersAdapter : BaseAdapter<CharacterDisplayable>() {
 
-    lateinit var listeners: OnCharactersListeners
+    lateinit var listener: OnCharactersListener
 
     override fun onCreateViewHolderBase(parent: ViewGroup, viewType: Int): CharacterViewHolder {
         val itemView = LayoutInflater
             .from(parent.context)
             .inflate(R.layout.item_character, parent, false)
 
-        return CharacterViewHolder(itemView, listeners)
+        return CharacterViewHolder(itemView, listener)
     }
 
     override fun onBindViewHolderBase(holder: RecyclerView.ViewHolder, position: Int) {
@@ -27,7 +27,7 @@ class CharactersAdapter : BaseAdapter<CharacterDisplayable>() {
         (holder as CharacterViewHolder).bind(character)
     }
 
-    class CharacterViewHolder(itemView: View, private val listeners: OnCharactersListeners) :
+    class CharacterViewHolder(itemView: View, private val listener: OnCharactersListener) :
         RecyclerView.ViewHolder(itemView) {
 
         fun bind(character: CharacterDisplayable) {
@@ -37,13 +37,13 @@ class CharactersAdapter : BaseAdapter<CharacterDisplayable>() {
                     .load(character.image)
                     .into(imageView)
                 setOnClickListener {
-                    listeners.onClick(character)
+                    listener.onClick(character)
                 }
             }
         }
     }
 
-    interface OnCharactersListeners {
+    interface OnCharactersListener {
         fun onClick(characterDisplayable: CharacterDisplayable)
     }
 }

@@ -11,7 +11,7 @@ import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class CharactersFragment : BaseFragment<CharactersViewModel>(R.layout.fragment_character),
-    CharactersAdapter.OnCharactersListeners {
+    CharactersAdapter.OnCharactersListener {
 
     override val viewModel: CharactersViewModel by viewModel()
     private val adapter: CharactersAdapter by inject()
@@ -23,7 +23,7 @@ class CharactersFragment : BaseFragment<CharactersViewModel>(R.layout.fragment_c
     }
 
     private fun initRecycler() {
-        adapter.listeners = this
+        adapter.listener = this
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = adapter
     }

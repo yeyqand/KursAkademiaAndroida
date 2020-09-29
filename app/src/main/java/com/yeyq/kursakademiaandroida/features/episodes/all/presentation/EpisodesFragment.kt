@@ -11,7 +11,7 @@ import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class EpisodesFragment : BaseFragment<EpisodesViewModel>(R.layout.fragment_episodes),
-    EpisodesAdapter.OnEpisodesListeners {
+    EpisodesAdapter.OnEpisodesListener {
 
     override val viewModel: EpisodesViewModel by viewModel()
     private val adapter: EpisodesAdapter by inject()
@@ -23,7 +23,7 @@ class EpisodesFragment : BaseFragment<EpisodesViewModel>(R.layout.fragment_episo
     }
 
     private fun initRecycler() {
-        adapter.listeners = this
+        adapter.listener = this
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = adapter
     }
