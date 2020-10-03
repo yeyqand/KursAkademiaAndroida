@@ -7,13 +7,13 @@ import com.yeyq.kursakademiaandroida.features.characters.all.presentation.model.
 
 class CharacterDetailsViewModel : BaseViewModel() {
 
-    private val _character = MutableLiveData<CharacterDisplayable>()
+    private val _character by lazy { MutableLiveData<CharacterDisplayable>() }
 
     val character: LiveData<CharacterDisplayable> by lazy {
         _character
     }
 
-    fun setCharacter(character: CharacterDisplayable) {
+    fun onCharacterPassed(character: CharacterDisplayable) {
         _character.value = character
     }
 }

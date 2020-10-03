@@ -21,7 +21,7 @@ class CharacterDetailsFragment :
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let { onCharacterPassed(it) }
+        notifyAboutData()
     }
 
     override fun initObservers() {
@@ -29,10 +29,10 @@ class CharacterDetailsFragment :
         observeCharacter()
     }
 
-    private fun onCharacterPassed(bundle: Bundle) {
-        bundle.getParcelable<CharacterDisplayable>(CHARACTER_DETAILS_KEY)?.let {
-            viewModel.setCharacter(it)
-        }
+    private fun notifyAboutData() {
+        arguments
+            ?.getParcelable<CharacterDisplayable>(CHARACTER_DETAILS_KEY)
+            ?.let { viewModel.onCharacterPassed(it) }
     }
 
     private fun observeCharacter() {

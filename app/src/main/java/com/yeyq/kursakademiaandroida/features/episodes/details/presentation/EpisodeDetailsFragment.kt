@@ -19,7 +19,7 @@ class EpisodeDetailsFragment :
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let { onEpisodePassed(it) }
+        notifyAboutData()
     }
 
     override fun initObservers() {
@@ -27,10 +27,10 @@ class EpisodeDetailsFragment :
         observeEpisode()
     }
 
-    private fun onEpisodePassed(bundle: Bundle) {
-        bundle.getParcelable<EpisodeDisplayable>(EPISODE_DETAILS_KEY)?.let {
-            viewModel.setEpisode(it)
-        }
+    private fun notifyAboutData() {
+        arguments
+            ?.getParcelable<EpisodeDisplayable>(EPISODE_DETAILS_KEY)
+            ?.let { viewModel.onEpisodePassed(it) }
     }
 
     private fun observeEpisode() {

@@ -19,7 +19,7 @@ class LocationDetailsFragment :
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let { onLocationPassed(it) }
+        notifyAboutData()
     }
 
     override fun initObservers() {
@@ -27,10 +27,10 @@ class LocationDetailsFragment :
         observeLocation()
     }
 
-    private fun onLocationPassed(bundle: Bundle) {
-        bundle.getParcelable<LocationDisplayable>(LOCATION_DETAILS_KEY)?.let {
-            viewModel.setLocation(it)
-        }
+    private fun notifyAboutData() {
+        arguments
+            ?.getParcelable<LocationDisplayable>(LOCATION_DETAILS_KEY)
+            ?.let { viewModel.onLocationPassed(it) }
     }
 
     private fun observeLocation() {

@@ -7,13 +7,13 @@ import com.yeyq.kursakademiaandroida.features.episodes.all.presentation.model.Ep
 
 class EpisodeDetailsViewModel : BaseViewModel() {
 
-    private val _episode = MutableLiveData<EpisodeDisplayable>()
+    private val _episode by lazy { MutableLiveData<EpisodeDisplayable>() }
 
     val episode: LiveData<EpisodeDisplayable> by lazy {
         _episode
     }
 
-    fun setEpisode(episode: EpisodeDisplayable) {
+    fun onEpisodePassed(episode: EpisodeDisplayable) {
         _episode.value = episode
     }
 

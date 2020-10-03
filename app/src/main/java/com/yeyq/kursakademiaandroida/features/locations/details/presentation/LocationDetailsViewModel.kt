@@ -7,13 +7,13 @@ import com.yeyq.kursakademiaandroida.features.locations.all.presentation.model.L
 
 class LocationDetailsViewModel : BaseViewModel() {
 
-    private val _location = MutableLiveData<LocationDisplayable>()
+    private val _location by lazy { MutableLiveData<LocationDisplayable>() }
 
     val location: LiveData<LocationDisplayable> by lazy {
         _location
     }
 
-    fun setLocation(location: LocationDisplayable) {
+    fun onLocationPassed(location: LocationDisplayable) {
         _location.value = location
     }
 
