@@ -2,12 +2,14 @@ package com.yeyq.kursakademiaandroida.core.base
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.yeyq.kursakademiaandroida.core.adapter.BindableAdapter
 
-abstract class BaseAdapter<T> : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+abstract class BaseAdapter<T> : BindableAdapter<T>,
+    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     val items by lazy { mutableListOf<T>() }
 
-    fun setItems(items: List<T>) {
+    override fun setItems(items: List<T>) {
         if (items.isNotEmpty()) {
             this.items.clear()
         }

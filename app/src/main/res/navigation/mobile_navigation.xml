@@ -9,7 +9,7 @@
         android:id="@+id/characters_screen"
         android:name="com.yeyq.kursakademiaandroida.features.characters.all.presentation.CharactersFragment"
         android:label="@string/title_characters"
-        tools:layout="@layout/fragment_character">
+        tools:layout="@layout/fragment_characters">
         <action
             android:id="@+id/action_navigate_from_characters_screen_to_character_details_fragment"
             app:destination="@id/character_details_screen"
@@ -20,7 +20,7 @@
         android:id="@+id/locations_screen"
         android:name="com.yeyq.kursakademiaandroida.features.locations.all.presentation.LocationsFragment"
         android:label="@string/title_locations"
-        tools:layout="@layout/fragment_location">
+        tools:layout="@layout/fragment_locations">
 
         <action
             android:id="@+id/action_navigate_from_locations_screen_to_location_details_fragment"
