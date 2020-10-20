@@ -1,8 +1,9 @@
 package com.yeyq.kursakademiaandroida.core.exception
 
 import retrofit2.HttpException
+import javax.inject.Inject
 
-class ErrorWrapperImpl : ErrorWrapper {
+class ErrorWrapperImpl @Inject constructor() : ErrorWrapper {
     override fun wrap(throwable: Throwable): Throwable {
         return when (throwable) {
             is HttpException -> wrapServerError(throwable)

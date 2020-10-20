@@ -2,27 +2,41 @@ package com.yeyq.kursakademiaandroida.features.locations.di
 
 import com.yeyq.kursakademiaandroida.features.locations.all.presentation.LocationsAdapter
 import com.yeyq.kursakademiaandroida.features.locations.all.presentation.LocationsFragment
-import com.yeyq.kursakademiaandroida.features.locations.all.presentation.LocationsViewModel
 import com.yeyq.kursakademiaandroida.features.locations.data.repository.LocationRepositoryImpl
-import com.yeyq.kursakademiaandroida.features.locations.details.presentation.LocationDetailsViewModel
 import com.yeyq.kursakademiaandroida.features.locations.domain.GetLocationsUseCase
 import com.yeyq.kursakademiaandroida.features.locations.domain.LocationRepository
 import com.yeyq.kursakademiaandroida.features.locations.navigation.LocationNavigator
 import com.yeyq.kursakademiaandroida.features.locations.navigation.LocationNavigatorImpl
-import org.koin.androidx.viewmodel.dsl.viewModel
-import org.koin.dsl.module
+import dagger.Binds
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ApplicationComponent
 
-val locationModule = module {
-    //data
-    factory<LocationRepository> { LocationRepositoryImpl(get(), get(), get(), get()) }
-    factory { GetLocationsUseCase(get()) }
 
-    //domain
-    viewModel { LocationsViewModel(get(), get(), get()) }
-    viewModel { LocationDetailsViewModel() }
+@InstallIn(ApplicationComponent::class)
+@Module
+abstract class LocationModule {
+    @Binds
+    abstract fun bindLocationRepositoryImpl(repository: LocationRepositoryImpl):
+            LocationRepository
 
-    //presentation
-    factory { LocationsFragment() }
-    factory { LocationsAdapter() }
-    factory<LocationNavigator> { LocationNavigatorImpl(get()) }
+    @Binds
+    abstract fun bindLocationNavigatorImpl(navigator: LocationNavigatorImpl):
+            LocationNavigator
+
+    companion object {
+        @Provides
+        fun provideLocationsUseCase(locationRepository: LocationRepository) =
+            GetLocationsUseCase(locationRepository)
+
+        @Provides
+        fun provideLocationsFragment() =
+            LocationsFragment()
+
+        @Provides
+        fun provideLocationsAdapter() =
+            LocationsAdapter()
+
+    }
 }

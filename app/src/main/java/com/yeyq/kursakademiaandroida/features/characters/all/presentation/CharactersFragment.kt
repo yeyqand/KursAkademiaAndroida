@@ -1,21 +1,25 @@
 package com.yeyq.kursakademiaandroida.features.characters.all.presentation
 
+import androidx.fragment.app.viewModels
 import com.yeyq.kursakademiaandroida.BR
 import com.yeyq.kursakademiaandroida.R
 import com.yeyq.kursakademiaandroida.core.base.BaseFragment
 import com.yeyq.kursakademiaandroida.databinding.FragmentCharactersBinding
 import com.yeyq.kursakademiaandroida.features.characters.all.presentation.model.CharacterDisplayable
-import org.koin.android.ext.android.inject
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class CharactersFragment : BaseFragment<CharactersViewModel, FragmentCharactersBinding>(
     BR.viewModel,
     R.layout.fragment_characters
 ),
     CharactersAdapter.OnCharactersListener {
 
-    override val viewModel: CharactersViewModel by viewModel()
-    private val adapter: CharactersAdapter by inject()
+    @Inject
+    lateinit var adapter: CharactersAdapter
+
+    override val viewModel: CharactersViewModel by viewModels()
 
     override fun initViews(binding: FragmentCharactersBinding) {
         super.initViews(binding)

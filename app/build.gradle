@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'dagger.hilt.android.plugin'
 apply from: '../dependencies.gradle'
 
 android {
@@ -47,6 +48,7 @@ dependencies {
     implementation uiDependencies.values()
     implementation navigationDependencies.values()
     implementation diDependencies.values()
+    kapt diKaptDependecies.values()
     implementation coroutinesDependencies.values()
     implementation lifecycleDependencies.values()
     implementation networkDependencies.values()

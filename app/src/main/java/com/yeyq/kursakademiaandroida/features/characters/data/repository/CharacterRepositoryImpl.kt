@@ -8,8 +8,9 @@ import com.yeyq.kursakademiaandroida.features.characters.data.local.model.Charac
 import com.yeyq.kursakademiaandroida.features.characters.data.local.model.CharacterDao
 import com.yeyq.kursakademiaandroida.features.characters.domain.CharacterRepository
 import com.yeyq.kursakademiaandroida.features.characters.domain.model.Character
+import javax.inject.Inject
 
-class CharacterRepositoryImpl(
+class CharacterRepositoryImpl @Inject constructor(
     private val rickAndMortyApi: RickAndMortyApi,
     private val characterDao: CharacterDao,
     private val networkStateProvider: NetworkStateProvider,

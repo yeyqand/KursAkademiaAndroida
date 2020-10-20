@@ -1,5 +1,6 @@
 package com.yeyq.kursakademiaandroida.features.episodes.all.presentation
 
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.map
@@ -11,7 +12,7 @@ import com.yeyq.kursakademiaandroida.features.episodes.domain.GetEpisodesUseCase
 import com.yeyq.kursakademiaandroida.features.episodes.domain.model.Episode
 import com.yeyq.kursakademiaandroida.features.episodes.navigation.EpisodeNavigator
 
-class EpisodesViewModel(
+class EpisodesViewModel @ViewModelInject constructor(
     private val getEpisodesUseCase: GetEpisodesUseCase,
     private val episodeNavigator: EpisodeNavigator,
     errorMapper: ErrorMapper

@@ -1,7 +1,9 @@
 package com.yeyq.kursakademiaandroida.core.di
 
+import android.app.Application
 import android.content.Context
 import android.net.ConnectivityManager
+import androidx.navigation.NavOptions
 import androidx.navigation.navOptions
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
@@ -17,46 +19,75 @@ import com.yeyq.kursakademiaandroida.core.navigation.FragmentNavigatorImpl
 import com.yeyq.kursakademiaandroida.core.network.NetworkStateProvider
 import com.yeyq.kursakademiaandroida.core.network.NetworkStateProviderImpl
 import com.yeyq.kursakademiaandroida.core.provider.ActivityProvider
-import org.koin.android.ext.koin.androidApplication
-import org.koin.android.ext.koin.androidContext
-import org.koin.dsl.module
+import dagger.Binds
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ApplicationComponent
+import dagger.hilt.android.qualifiers.ApplicationContext
+import javax.inject.Singleton
 
 const val GRID_COLUMN_NUMBER = 1
 
-val appModule = module {
+@InstallIn(ApplicationComponent::class)
+@Module
+abstract class AppModule {
+    @Binds
+    abstract fun bindNetworkStateProviderImpl(provider: NetworkStateProviderImpl):
+            NetworkStateProvider
 
-    factory { LinearLayoutManager(androidContext()) }
+    @Binds
+    abstract fun bindErrorWrapperImpl(errorWrapper: ErrorWrapperImpl):
+            ErrorWrapper
 
-    factory<RecyclerView.LayoutManager> { GridLayoutManager(androidContext(), GRID_COLUMN_NUMBER) }
+    @Binds
+    abstract fun bindErrorMapperImpl(errorMapper: ErrorMapperImpl):
+            ErrorMapper
 
-    factory { DividerItemDecoration(androidContext(), LinearLayoutManager.VERTICAL) }
+    companion object {
+        @Provides
+        fun provideLinearLayoutManager(@ApplicationContext context: Context) =
+            LinearLayoutManager(context)
 
-    factory { androidContext().getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager }
+        @Provides
+        fun provideGridLayoutManager(@ApplicationContext context: Context): RecyclerView.LayoutManager =
+            GridLayoutManager(context, GRID_COLUMN_NUMBER)
 
-    factory<NetworkStateProvider> { NetworkStateProviderImpl(get()) }
+        @Provides
+        fun provideDividerItemDecoration(
+            @ApplicationContext context: Context,
+            layoutManager: Int = LinearLayoutManager.VERTICAL
+        ) =
+            DividerItemDecoration(context, layoutManager)
 
-    factory<ErrorWrapper> { ErrorWrapperImpl() }
+        @Provides
+        fun provideConnectivityManager(@ApplicationContext context: Context) =
+            context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
 
-    factory<ErrorMapper> { ErrorMapperImpl(androidContext()) }
+        @Provides
+        @Singleton
+        fun provideActivityProvider(application: Application) =
+            ActivityProvider(application)
 
-    single(createdAtStart = true) { ActivityProvider(androidApplication()) }
+        @Provides
+        fun provideNavOptions() =
+            navOptions {
+                anim { enter = R.anim.fragment_fade_enter }
+                anim { exit = R.anim.fragment_fade_exit }
+                anim { popEnter = R.anim.fragment_fade_enter }
+                anim { popExit = R.anim.fragment_fade_exit }
+            }
 
-    factory<FragmentNavigator> {
-        FragmentNavigatorImpl(
-            activityProvider = get(),
-            navHostController = R.id.nav_host_fragment,
-            homeDestinationRes = R.id.characters_screen,
-            defaultNavOptions = get()
-        )
+        @Provides
+        fun provideFragmentNavigator(
+            activityProvider: ActivityProvider,
+            defaultNavOptions: NavOptions
+        ): FragmentNavigator =
+            FragmentNavigatorImpl(
+                activityProvider,
+                R.id.nav_host_fragment,
+                R.id.characters_screen,
+                defaultNavOptions
+            )
     }
-
-    factory {
-        navOptions {
-            anim { enter = R.anim.fragment_fade_enter }
-            anim { exit = R.anim.fragment_fade_exit }
-            anim { popEnter = R.anim.fragment_fade_enter }
-            anim { popExit = R.anim.fragment_fade_exit }
-        }
-    }
-
 }

@@ -1,20 +1,22 @@
 package com.yeyq.kursakademiaandroida.features.episodes.details.presentation
 
 import android.os.Bundle
+import androidx.fragment.app.viewModels
 import com.yeyq.kursakademiaandroida.BR
 import com.yeyq.kursakademiaandroida.R
 import com.yeyq.kursakademiaandroida.core.base.BaseFragment
 import com.yeyq.kursakademiaandroida.databinding.FragmentEpisodesBinding
 import com.yeyq.kursakademiaandroida.features.episodes.all.presentation.model.EpisodeDisplayable
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class EpisodeDetailsFragment :
     BaseFragment<EpisodeDetailsViewModel, FragmentEpisodesBinding>(
         BR.viewModel,
         R.layout.fragment_episode_details
     ) {
 
-    override val viewModel: EpisodeDetailsViewModel by viewModel()
+    override val viewModel: EpisodeDetailsViewModel by viewModels()
 
     companion object {
         const val EPISODE_DETAILS_KEY = "episodeDetailsKey"

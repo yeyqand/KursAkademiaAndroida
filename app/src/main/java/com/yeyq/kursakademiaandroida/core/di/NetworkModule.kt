@@ -3,40 +3,51 @@ package com.yeyq.kursakademiaandroida.core.di
 import com.yeyq.kursakademiaandroida.BASE_URL
 import com.yeyq.kursakademiaandroida.BuildConfig
 import com.yeyq.kursakademiaandroida.core.api.RickAndMortyApi
-import okhttp3.Interceptor
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ApplicationComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Singleton
 
-val networkModule = module {
-
-    single<Interceptor> {
-        HttpLoggingInterceptor()
+@InstallIn(ApplicationComponent::class)
+@Module
+abstract class NetworkModule {
+    companion object {
+        @Provides
+        @Singleton
+        internal fun provideLoggingInterceptor() = HttpLoggingInterceptor()
             .apply {
-                level =
-                    if (BuildConfig.DEBUG) HttpLoggingInterceptor.Level.BODY
-                    else HttpLoggingInterceptor.Level.NONE
+                level = if (BuildConfig.DEBUG) HttpLoggingInterceptor.Level.BODY
+                else HttpLoggingInterceptor.Level.NONE
             }
-    }
 
-    single {
-        OkHttpClient.Builder()
-            .addInterceptor(get<Interceptor>())
+        @Provides
+        @Singleton
+        internal fun provideOkHttpClient(logging: HttpLoggingInterceptor) = OkHttpClient.Builder()
+            .addInterceptor(logging)
             .build()
-    }
 
-    single { GsonConverterFactory.create() }
+        @Provides
+        @Singleton
+        internal fun provideGsonConverterFactory() = GsonConverterFactory.create()
 
-    single {
-        Retrofit.Builder()
+        @Provides
+        @Singleton
+        internal fun provideRetrofit(
+            okHttpClient: OkHttpClient,
+            gsonConverterFactory: GsonConverterFactory
+        ) = Retrofit.Builder()
             .baseUrl(BASE_URL)
-            .client(get<OkHttpClient>())
-            .addConverterFactory(get<GsonConverterFactory>())
+            .client(okHttpClient)
+            .addConverterFactory(gsonConverterFactory)
             .build()
+
+        @Provides
+        @Singleton
+        internal fun provideApi(retrofit: Retrofit) = retrofit.create(RickAndMortyApi::class.java)
     }
-
-    single { get<Retrofit>().create(RickAndMortyApi::class.java) }
-
 }

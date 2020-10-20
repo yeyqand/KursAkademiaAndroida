@@ -7,8 +7,9 @@ import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
 import com.yeyq.kursakademiaandroida.core.provider.ActivityProvider
+import javax.inject.Inject
 
-class FragmentNavigatorImpl(
+class FragmentNavigatorImpl @Inject constructor(
     private val activityProvider: ActivityProvider,
     @IdRes private val navHostController: Int,
     @IdRes private val homeDestinationRes: Int,

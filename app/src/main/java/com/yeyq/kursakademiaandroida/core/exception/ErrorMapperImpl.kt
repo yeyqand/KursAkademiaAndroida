@@ -3,8 +3,10 @@ package com.yeyq.kursakademiaandroida.core.exception
 import android.content.Context
 import androidx.annotation.StringRes
 import com.yeyq.kursakademiaandroida.R
+import dagger.hilt.android.qualifiers.ApplicationContext
+import javax.inject.Inject
 
-class ErrorMapperImpl(private val context: Context) : ErrorMapper {
+class ErrorMapperImpl @Inject constructor(@ApplicationContext val context: Context) : ErrorMapper {
 
     override fun map(throwable: Throwable): String {
         return when (throwable) {

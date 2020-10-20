@@ -2,8 +2,9 @@ package com.yeyq.kursakademiaandroida.core.network
 
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
+import javax.inject.Inject
 
-class NetworkStateProviderImpl(
+class NetworkStateProviderImpl @Inject constructor(
     private val connectivityManager: ConnectivityManager
 ) : NetworkStateProvider {
     override fun isNetworkAvailable(): Boolean {

@@ -8,8 +8,9 @@ import com.yeyq.kursakademiaandroida.features.locations.data.local.model.Locatio
 import com.yeyq.kursakademiaandroida.features.locations.data.local.model.LocationDao
 import com.yeyq.kursakademiaandroida.features.locations.domain.LocationRepository
 import com.yeyq.kursakademiaandroida.features.locations.domain.model.Location
+import javax.inject.Inject
 
-class LocationRepositoryImpl(
+class LocationRepositoryImpl @Inject constructor(
     private val rickAndMortyApi: RickAndMortyApi,
     private val locationDao: LocationDao,
     private val networkStateProvider: NetworkStateProvider,

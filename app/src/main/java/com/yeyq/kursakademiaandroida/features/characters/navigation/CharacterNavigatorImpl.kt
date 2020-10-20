@@ -4,8 +4,9 @@ import com.yeyq.kursakademiaandroida.R
 import com.yeyq.kursakademiaandroida.core.navigation.FragmentNavigator
 import com.yeyq.kursakademiaandroida.features.characters.all.presentation.model.CharacterDisplayable
 import com.yeyq.kursakademiaandroida.features.characters.details.presentation.CharacterDetailsFragment
+import javax.inject.Inject
 
-class CharacterNavigatorImpl(private val fragmentNavigator: FragmentNavigator) :
+class CharacterNavigatorImpl @Inject constructor(private val fragmentNavigator: FragmentNavigator) :
     CharacterNavigator {
     override fun openCharacterDetailsScreen(character: CharacterDisplayable) {
         fragmentNavigator.navigateTo(

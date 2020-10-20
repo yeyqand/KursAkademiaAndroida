@@ -6,8 +6,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.yeyq.kursakademiaandroida.core.base.BaseAdapter
 import com.yeyq.kursakademiaandroida.databinding.ItemEpisodeBinding
 import com.yeyq.kursakademiaandroida.features.episodes.all.presentation.model.EpisodeDisplayable
+import javax.inject.Inject
 
-class EpisodesAdapter : BaseAdapter<EpisodeDisplayable>() {
+class EpisodesAdapter @Inject constructor() : BaseAdapter<EpisodeDisplayable>() {
 
     lateinit var listener: OnEpisodesListener
 

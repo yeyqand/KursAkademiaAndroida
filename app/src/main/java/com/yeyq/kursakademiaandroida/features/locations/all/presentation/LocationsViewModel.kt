@@ -1,5 +1,6 @@
 package com.yeyq.kursakademiaandroida.features.locations.all.presentation
 
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.map
@@ -12,7 +13,7 @@ import com.yeyq.kursakademiaandroida.features.locations.domain.model.Location
 import com.yeyq.kursakademiaandroida.features.locations.navigation.LocationNavigator
 
 
-class LocationsViewModel(
+class LocationsViewModel @ViewModelInject constructor(
     private val getLocationsUseCase: GetLocationsUseCase,
     private val locationNavigator: LocationNavigator,
     errorMapper: ErrorMapper

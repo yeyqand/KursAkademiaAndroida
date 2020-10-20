@@ -8,8 +8,9 @@ import com.yeyq.kursakademiaandroida.features.episodes.data.local.model.EpisodeC
 import com.yeyq.kursakademiaandroida.features.episodes.data.local.model.EpisodeDao
 import com.yeyq.kursakademiaandroida.features.episodes.domain.EpisodeRepository
 import com.yeyq.kursakademiaandroida.features.episodes.domain.model.Episode
+import javax.inject.Inject
 
-class EpisodeRepositoryImpl(
+class EpisodeRepositoryImpl @Inject constructor(
     private val rickAndMortyApi: RickAndMortyApi,
     private val episodeDao: EpisodeDao,
     private val networkStateProvider: NetworkStateProvider,
