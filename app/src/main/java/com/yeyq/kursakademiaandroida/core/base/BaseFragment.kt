@@ -34,7 +34,7 @@ abstract class BaseFragment<T : BaseViewModel, S : ViewDataBinding>(
         lifecycle.addObserver(viewModel)
     }
 
-    open fun initViews(it: S) {}
+    open fun initViews(binding: S) {}
 
     open fun initObservers() {
         observeMessage()
