@@ -7,13 +7,13 @@
 
         <variable
             name="viewModel"
-            type="com.yeyq.kursakademiaandroida.features.episodes.all.presentation.EpisodesViewModel" />
+            type="com.yeyq.kursakademiaandroida.features.locations.all.presentation.LocationsViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".features.episodes.all.presentation.EpisodesFragment">
+        tools:context=".features.episodes.all.presentation.LocationsFragment">
 
         <ProgressBar
             android:id="@+id/progressBar"
@@ -29,7 +29,7 @@
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:items="@{viewModel.episodes}"
+            app:items="@{viewModel.locations}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:padding="8dp" />
 
@@ -40,7 +40,7 @@
             android:textSize="30sp"
             android:layout_margin="30dp"
             android:padding="10dp"
-            android:text="@{String.valueOf(viewModel.episodes.size())}"
+            android:text="@{String.valueOf(viewModel.locations.size())}"
             tools:text="25"
             android:background="@drawable/bg_circle"
             app:layout_constraintTop_toTopOf="parent"
