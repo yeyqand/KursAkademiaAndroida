@@ -8,7 +8,6 @@ import androidx.annotation.StringRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.observe
 
 abstract class BaseFragment<T : BaseViewModel, S : ViewDataBinding>(
     private val viewModelId: Int,

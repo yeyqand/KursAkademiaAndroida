@@ -1,13 +1,13 @@
 ext {
-    def appCompatVersion = "1.1.0"
-    def coreKtxVersion = "1.3.0"
+    def appCompatVersion = "1.2.0"
+    def coreKtxVersion = "1.3.2"
     coreDependencies = [
             appCompat: "androidx.appcompat:appcompat:$appCompatVersion",
             coreKtx  : "androidx.core:core-ktx:$coreKtxVersion"
     ]
 
-    def constraintLayoutVersion = "1.1.3"
-    def materialVersion = "1.1.0"
+    def constraintLayoutVersion = "2.0.1"
+    def materialVersion = "1.2.1"
     def recyclerviewVersion = "1.1.0"
     def glideVersion = "4.11.0"
     def cardviewVersion = "1.0.0"
@@ -32,7 +32,7 @@ ext {
             koinScope    : "org.koin:koin-androidx-scope:$koinVersion"
     ]
 
-    def coroutinesVersion = "1.3.7"
+    def coroutinesVersion = "1.3.9"
     coroutinesDependencies = [
             coroutinesCore: "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion",
             coroutines    : "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
@@ -48,8 +48,8 @@ ext {
             lifecycleLiveEvent : "com.github.hadilq.liveevent:liveevent:$liveEventVersion"
     ]
 
-    def retrofitVersion = "2.8.1"
-    def okhttpVersion = "4.7.2"
+    def retrofitVersion = "2.9.0"
+    def okhttpVersion = "4.9.0"
     networkDependencies = [
             retrofit             : "com.squareup.retrofit2:retrofit:$retrofitVersion",
             retrofitConverterGson: "com.squareup.retrofit2:converter-gson:$retrofitVersion",
@@ -66,7 +66,7 @@ ext {
             roomCompiler: "androidx.room:room-compiler:$roomVersion"
     ]
 
-    def junitVersion = "5.6.2"
+    def junitVersion = "5.7.0"
     def mockkVersion = "1.10.0"
     def kluentVersion = "1.61"
     testDependencies = [
